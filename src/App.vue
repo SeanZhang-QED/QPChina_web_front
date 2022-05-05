@@ -33,6 +33,6 @@ body {
 header {
   width: 100vw;
   background-color: black;
-  padding: 15px;
+  padding: 3px;
 }
 </style>
