@@ -8,9 +8,9 @@
       <div class="router-view">
         <!-- <router-view></router-view> -->
         <h1> {{ $route.path }} </h1>
-        <Home :style="{display: $route.name == 'home' ? 'initial' : 'none'}" />
-        <AllEvent :style="{display: $route.name == 'all-event' ? 'initial' : 'none'}" />
-        <LiveEvent :style="{display: $route.name == 'live-event' ? 'initial' : 'none'}" />
+        <Home v-if="$route.name == 'home'"/>
+        <AllEvent v-if="$route.name == 'all-event'" />
+        <LiveEvent v-if="$route.name == 'live-event'" />
       </div>
     </div>
   </div>
