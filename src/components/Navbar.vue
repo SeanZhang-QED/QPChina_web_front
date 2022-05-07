@@ -1,11 +1,11 @@
 <template>
   <nav>
-    <div class="menu-item"><router-link to="/">Home</router-link></div>
+    <div class="menu-item"><router-link to="/" exact>Home</router-link></div>
     <div class="dropdown">
       <button class="menu-item"><a href="#">Event</a></button>
       <ul class="dropdown-menu">
-        <router-link to="/all-event" tag="li">All event</router-link>
-        <router-link to="/live-event" tag="li">Live event</router-link>
+        <router-link to="/all-event" exact tag="li">All event</router-link>
+        <router-link to="/live-event" exact tag="li">Live event</router-link>
       </ul>
     </div>
     <div class="dropdown">
@@ -71,7 +71,8 @@ nav .donation {
 
 nav .menu-item {
   color: #f7cbd8;
-  padding: 15px 20px;
+  margin-left: 3px;
+  padding: 15px 15px;
   position: relative;
   text-align: center;
   display: flex;
@@ -79,7 +80,7 @@ nav .menu-item {
 }
 
 nav button {
-  background-color: black;
+  background-color: transparent;
   border: none;
 }
 
@@ -118,7 +119,7 @@ nav .donation a {
 nav .dropdown-menu {
   position: absolute;
   padding: 0.75rem;
-  top: 50px;
+  top: 58px;
   border-radius: 0.25rem;
   background-color: #333333;
   display: none;
