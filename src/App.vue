@@ -34,11 +34,18 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  /* subtract the size of scrollbar: for window, it may be 12px - 20px, for chrome 16px*/
+  width: 100vw - 20px;
+  
   box-sizing: border-box;
 }
 
+body {
+  /* to avoid the overflow of navbar */
+  min-width: 1024px; 
+}
+
 .body {
-  width: 100vw;
   height: 100vh;
   font-family: "monterrat", sans-serif;
   background-image: url('assets/background_galaxy.jpg');
@@ -55,7 +62,6 @@ export default {
 }
 
 header {
-  width: 100vw;
   padding: 3px;
   background-color: black;
 }
