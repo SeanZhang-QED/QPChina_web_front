@@ -1,5 +1,8 @@
 <template>
   <nav>
+    <div>
+      <el-button icon="el-icon-user-solid" type="plain" plain>Login</el-button>
+    </div>
     <div class="menu-item"><router-link to="/" exact>Home</router-link></div>
     <div class="dropdown">
       <button class="menu-item"><a href="#">Event</a></button>
@@ -140,5 +143,18 @@ nav .dropdown-menu li {
 nav .dropdown-menu li.active,
 nav .dropdown-menu li:hover {
   color: #f5a6bd;
+}
+
+.el-button {
+  padding: 15px 15px;
+  font-size: 16px;
+  color: white;
+  background-color: transparent;
+}
+
+.el-button.is-plain:focus, 
+.el-button.is-plain:hover {
+  color: darkgray;
+  background-color: transparent;
 }
 </style>
