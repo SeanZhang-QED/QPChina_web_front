@@ -5,14 +5,14 @@
     </div>
     <div class="menu-item"><router-link to="/" exact>Home</router-link></div>
     <div class="dropdown">
-      <button class="menu-item"><a href="#">Event</a></button>
+      <button class="menu-item">Event</button>
       <ul class="dropdown-menu">
         <router-link to="/all-event" exact tag="li">All event</router-link>
         <router-link to="/live-event" exact tag="li">Live event</router-link>
       </ul>
     </div>
     <div class="dropdown">
-      <button class="menu-item"><a href="#">About us</a></button>
+      <button class="menu-item">About us</button>
       <ul class="dropdown-menu">
         <li>What do we do</li>
         <li>Program overview</li>
@@ -24,7 +24,7 @@
     </div>
     <div class="menu-item"><a href="#">Blogs</a></div>
     <div class="dropdown">
-      <button class="menu-item"><a href="#">Governance</a></button>
+      <button class="menu-item">Governance</button>
       <ul class="dropdown-menu">
         <li>Corporated and Board policies</li>
         <li>Board and Committee</li>
@@ -33,7 +33,7 @@
     <div class="menu-item"><a href="#">Opportunities</a></div>
     <div class="menu-item"><a href="#">Support Us</a></div>
     <div class="dropdown">
-      <button class="menu-item"><a href="#">Follow Us</a></button>
+      <button class="menu-item">Follow use</button>
       <ul class="dropdown-menu">
         <li>LinkedIn</li>
         <li>Twitter</li>
@@ -64,6 +64,11 @@ nav {
   justify-content: center;
 }
 
+a {
+  text-decoration: none;
+  white-space: nowrap;  
+}
+
 nav .donation {
   background-color: #f7cbd8;
   position: relative;
@@ -87,36 +92,33 @@ nav button {
   border: none;
 }
 
-nav .menu-item a.active,
-nav .menu-item a:hover {
+nav .menu-item:active,
+nav .menu-item:hover {
   color: #f5a6bd;
 }
 
-nav .donation a.active,
-nav .donation a:hover {
-  color: white;
-}
-
-nav .donation.active,
+nav .donation:active,
 nav .donation:hover {
   background-color: #f5a6bd;
 }
 
-nav .menu-item a {
-  color: inherit;
+nav .donation a:active,
+nav .donation a:hover {
+  color: white;
+}
+
+nav .menu-item, 
+.menu-item a {
+  color:  #f7cbd8;
   font-size: 16px;
   font-family: "monterrat", sans-serif;
   font-weight: bold;
-  text-decoration: none;
-  white-space: nowrap;
 }
 
 nav .donation a {
   color: #333333;
   font-size: 24px;
   font-weight: bold;
-  text-decoration: none;
-  white-space: nowrap;
 }
 
 nav .dropdown-menu {
@@ -140,7 +142,7 @@ nav .dropdown-menu li {
   text-align: center;
 }
 
-nav .dropdown-menu li.active,
+nav .dropdown-menu li:active,
 nav .dropdown-menu li:hover {
   color: #f5a6bd;
 }
