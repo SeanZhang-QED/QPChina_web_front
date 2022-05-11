@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <header>
+    <div class="app-header">
       <Navbar />
-    </header>
+    </div>
 
-    <div class="body">
+    <div class="app-body">
       <div class="router-view">
         <!-- <router-view></router-view> -->
         <h1> {{ $route.path }} </h1>
@@ -45,7 +45,7 @@ body {
   min-width: 1024px; 
 }
 
-.body {
+.app-body {
   height: 100vh;
   font-family: "monterrat", sans-serif;
   background-image: url('assets/background_galaxy.jpg');
@@ -61,7 +61,7 @@ body {
   left: 45%;
 }
 
-header {
+.app-header {
   padding: 3px;
   background-color: black;
 }
