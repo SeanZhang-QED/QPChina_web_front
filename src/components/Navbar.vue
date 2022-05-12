@@ -1,8 +1,10 @@
 <template>
   <nav>
     <div>
-      <el-button 
-        icon="el-icon-user-solid" type="plain" plain
+      <el-button
+        icon="el-icon-user-solid"
+        type="plain"
+        plain
         @click="handleOpen"
       >
         Login
@@ -27,7 +29,7 @@
         <li>Our team</li>
       </ul>
     </div>
-    <div class="menu-item"><a href="#" >Blogs</a></div>
+    <div class="menu-item"><a href="#">Blogs</a></div>
     <div class="dropdown">
       <button class="menu-item">Governance</button>
       <ul class="dropdown-menu">
@@ -40,15 +42,47 @@
     <div class="dropdown">
       <button class="menu-item">Follow use</button>
       <ul class="dropdown-menu">
-        <li>LinkedIn</li>
-        <li>Twitter</li>
-        <li>Facebook</li>
-        <li>Instagram</li>
-        <li>Tictok</li>
-        <li>Youtube</li>
+        <li>
+          <a
+            href="https://www.linkedin.com/company/quantum-photonics-club/"
+            target="_blank"
+          >
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/qpclub1" target="_blank"> Twitter </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/qpclub1/" target="_blank">
+            Facebook
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/qphotonics/" target="_blank">
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a href="https://www.tiktok.com/@qpclub" target="_blank"> Tictok </a>
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/channel/UCnDp5TqEh9ut3vL2F962igg"
+            target="_blank"
+          >
+            Youtube
+          </a>
+        </li>
       </ul>
     </div>
-    <div class="menu-item donation"><a href="#">Donate</a></div>
+    <div class="menu-item donation">
+      <a
+        href="https://www.convergepay.com/hosted-payments/?ssl_txn_auth_token=A%2BknWH0rQYeJ%2BapqVBZZ3QAAAX%2BPTHr4&recurring=#!/payment-method"
+      >
+        Donate
+      </a>
+    </div>
   </nav>
 </template>
 
@@ -57,9 +91,9 @@ export default {
   name: "Nav-bar",
   methods: {
     handleOpen() {
-      this.$emit('handle-login-open');
-    }
-  }
+      this.$emit("handle-login-open");
+    },
+  },
 };
 </script>
 
@@ -76,7 +110,7 @@ nav {
 
 a {
   text-decoration: none;
-  white-space: nowrap;  
+  white-space: nowrap;
 }
 
 nav .donation {
@@ -117,9 +151,9 @@ nav .donation a:hover {
   color: white;
 }
 
-nav .menu-item, 
+nav .menu-item,
 .menu-item a {
-  color:  #f7cbd8;
+  color: #f7cbd8;
   font-size: 16px;
   font-family: "monterrat", sans-serif;
   font-weight: bold;
@@ -164,7 +198,7 @@ nav .dropdown-menu li:hover {
   background-color: transparent;
 }
 
-.el-button.is-plain:focus, 
+.el-button.is-plain:focus,
 .el-button.is-plain:hover {
   color: darkgray;
   background-color: transparent;
