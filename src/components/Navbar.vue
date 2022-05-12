@@ -1,7 +1,12 @@
 <template>
   <nav>
     <div>
-      <el-button icon="el-icon-user-solid" type="plain" plain>Login</el-button>
+      <el-button 
+        icon="el-icon-user-solid" type="plain" plain
+        @click="handleOpen"
+      >
+        Login
+      </el-button>
     </div>
     <div class="menu-item"><router-link to="/" exact>Home</router-link></div>
     <div class="dropdown">
@@ -22,7 +27,7 @@
         <li>Our team</li>
       </ul>
     </div>
-    <div class="menu-item"><a href="#">Blogs</a></div>
+    <div class="menu-item"><a href="#" >Blogs</a></div>
     <div class="dropdown">
       <button class="menu-item">Governance</button>
       <ul class="dropdown-menu">
@@ -49,7 +54,12 @@
 
 <script>
 export default {
-  name: "Nav-bar"
+  name: "Nav-bar",
+  methods: {
+    handleOpen() {
+      this.$emit('handle-login-open');
+    }
+  }
 };
 </script>
 
