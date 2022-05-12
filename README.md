@@ -1,8 +1,8 @@
 # qp-frontend Project
 
 ## Project Structure
--`/public`
-  -`index.html`: main html for the whole project
+- `/public`
+  - `index.html`: main html for the whole project
 - `/src`
   - `/src/assets`: Images, SVGs
   - `/src/components`: Vue component files
@@ -22,11 +22,6 @@
     - AllEvent
     - LiveEvent
     - (All pages' components should be here)...
-
-## Run the code below to install the node modules and the dependencies
-```
-npm install
-```
 
 ## Compiles and hot-reloads for development
 ```
