@@ -79,6 +79,7 @@
     <div class="menu-item donation">
       <a
         href="https://www.convergepay.com/hosted-payments/?ssl_txn_auth_token=A%2BknWH0rQYeJ%2BapqVBZZ3QAAAX%2BPTHr4&recurring=#!/payment-method"
+        target="_blank"
       >
         Donate
       </a>
@@ -179,7 +180,8 @@ nav .dropdown-menu:hover {
   display: initial;
 }
 
-nav .dropdown-menu li {
+nav .dropdown-menu li,
+nav .dropdown-menu li a {
   color: #f7cbd8;
   font-weight: bold;
   padding: 4px;
@@ -187,7 +189,9 @@ nav .dropdown-menu li {
 }
 
 nav .dropdown-menu li:active,
-nav .dropdown-menu li:hover {
+nav .dropdown-menu li:hover,
+nav .dropdown-menu li a:active,
+nav .dropdown-menu li a:hover {
   color: #f5a6bd;
 }
 
