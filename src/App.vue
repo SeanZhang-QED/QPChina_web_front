@@ -1,10 +1,21 @@
 <template>
   <div id="app">
     <div class="app-header">
-      <Navbar />
+      <Navbar 
+        @handle-login-open="handleLoginOpen"
+      />
     </div>
 
     <div class="app-body">
+      <el-dialog
+        class="app-dialog"
+        fullscreen
+        :visible.sync="isLoginClicked"
+        :before-close="handleLoginClose"
+        style="overflow: hidden"
+      >
+      <Forms  style="margin: auto"/>
+      </el-dialog>
       <div class="router-view">
         <!-- <router-view></router-view> -->
         <h1> {{ $route.path }} </h1>
@@ -21,13 +32,27 @@ import Navbar from "./components/Navbar.vue";
 import Home from "./components/Home.vue";
 import AllEvent from "./components/AllEvent.vue";
 import LiveEvent from "./components/LiveEvent.vue";
+import Forms from "./components/Forms.vue"
 
 export default {
   name: "App",
-  components: {
-    Navbar, Home, AllEvent, LiveEvent
+  data() {
+    return {
+      isLoginClicked: false
+    };
   },
-};
+  methods: {
+    handleLoginOpen() {
+      this.isLoginClicked = true;
+    },
+    handleLoginClose() {
+      this.isLoginClicked = false;
+    }
+  },
+  components: {
+    Navbar, Home, AllEvent, LiveEvent, Forms
+  },
+}
 </script>
 
 <style >
@@ -36,12 +61,13 @@ export default {
   padding: 0;
   /* subtract the size of scrollbar: for window, it may be 12px - 20px, for chrome 16px*/
   width: 100vw - 20px;
-  
   box-sizing: border-box;
 }
 
 body {
-  /* to avoid the overflow of navbar */
+  /* 解决页面dialog出现时，页面padding增加，和页面滚动条消失造成的画面抖动 */
+  padding-right: 0 !important;
+  overflow-y: auto !important;
   min-width: 1024px; 
 }
 
@@ -55,7 +81,8 @@ body {
   background-attachment:fixed;
 }
 
-.router-view {
+.router-view,
+.app-dialog {
   position: absolute;
   top: 50%;
   left: 45%;
@@ -64,5 +91,17 @@ body {
 .app-header {
   padding: 3px;
   background-color: black;
+}
+
+.el-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+el-button:focus, 
+el-button:hover {
+  color: initial;
+  background-color: initial;
 }
 </style>

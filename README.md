@@ -1,12 +1,13 @@
 # qp-frontend Project
 
 ## Project Structure
-
+-`/public`
+  -`index.html`: main html for the whole project
 - `/src`
   - `/src/assets`: Images, SVGs
   - `/src/components`: Vue component files
   - `/src/router`: Vue router configuration files
-  - `/src/App.vue`: main Vue template for the web
+  - `/src/App.vue`: main Vue template for the project
 
 ## Template Structure
 

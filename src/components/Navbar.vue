@@ -1,15 +1,25 @@
 <template>
   <nav>
+    <div>
+      <el-button
+        icon="el-icon-user-solid"
+        type="plain"
+        plain
+        @click="handleOpen"
+      >
+        Login
+      </el-button>
+    </div>
     <div class="menu-item"><router-link to="/" exact>Home</router-link></div>
     <div class="dropdown">
-      <button class="menu-item"><a href="#">Event</a></button>
+      <button class="menu-item">Event</button>
       <ul class="dropdown-menu">
         <router-link to="/all-event" exact tag="li">All event</router-link>
         <router-link to="/live-event" exact tag="li">Live event</router-link>
       </ul>
     </div>
     <div class="dropdown">
-      <button class="menu-item"><a href="#">About us</a></button>
+      <button class="menu-item">About us</button>
       <ul class="dropdown-menu">
         <li>What do we do</li>
         <li>Program overview</li>
@@ -21,7 +31,7 @@
     </div>
     <div class="menu-item"><a href="#">Blogs</a></div>
     <div class="dropdown">
-      <button class="menu-item"><a href="#">Governance</a></button>
+      <button class="menu-item">Governance</button>
       <ul class="dropdown-menu">
         <li>Corporated and Board policies</li>
         <li>Board and Committee</li>
@@ -30,23 +40,60 @@
     <div class="menu-item"><a href="#">Opportunities</a></div>
     <div class="menu-item"><a href="#">Support Us</a></div>
     <div class="dropdown">
-      <button class="menu-item"><a href="#">Follow Us</a></button>
+      <button class="menu-item">Follow use</button>
       <ul class="dropdown-menu">
-        <li>LinkedIn</li>
-        <li>Twitter</li>
-        <li>Facebook</li>
-        <li>Instagram</li>
-        <li>Tictok</li>
-        <li>Youtube</li>
+        <li>
+          <a
+            href="https://www.linkedin.com/company/quantum-photonics-club/"
+            target="_blank"
+          >
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/qpclub1" target="_blank"> Twitter </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/qpclub1/" target="_blank">
+            Facebook
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/qphotonics/" target="_blank">
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a href="https://www.tiktok.com/@qpclub" target="_blank"> Tictok </a>
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/channel/UCnDp5TqEh9ut3vL2F962igg"
+            target="_blank"
+          >
+            Youtube
+          </a>
+        </li>
       </ul>
     </div>
-    <div class="menu-item donation"><a href="#">Donate</a></div>
+    <div class="menu-item donation">
+      <a
+        href="https://www.convergepay.com/hosted-payments/?ssl_txn_auth_token=A%2BknWH0rQYeJ%2BapqVBZZ3QAAAX%2BPTHr4&recurring=#!/payment-method"
+      >
+        Donate
+      </a>
+    </div>
   </nav>
 </template>
 
 <script>
 export default {
-  name: "Nav-bar"
+  name: "Nav-bar",
+  methods: {
+    handleOpen() {
+      this.$emit("handle-login-open");
+    },
+  },
 };
 </script>
 
@@ -59,6 +106,11 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+a {
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 nav .donation {
@@ -84,36 +136,33 @@ nav button {
   border: none;
 }
 
-nav .menu-item a.active,
-nav .menu-item a:hover {
+nav .menu-item:active,
+nav .menu-item:hover {
   color: #f5a6bd;
 }
 
-nav .donation a.active,
-nav .donation a:hover {
-  color: white;
-}
-
-nav .donation.active,
+nav .donation:active,
 nav .donation:hover {
   background-color: #f5a6bd;
 }
 
-nav .menu-item a {
-  color: inherit;
+nav .donation a:active,
+nav .donation a:hover {
+  color: white;
+}
+
+nav .menu-item,
+.menu-item a {
+  color: #f7cbd8;
   font-size: 16px;
   font-family: "monterrat", sans-serif;
   font-weight: bold;
-  text-decoration: none;
-  white-space: nowrap;
 }
 
 nav .donation a {
   color: #333333;
   font-size: 24px;
   font-weight: bold;
-  text-decoration: none;
-  white-space: nowrap;
 }
 
 nav .dropdown-menu {
@@ -137,8 +186,21 @@ nav .dropdown-menu li {
   text-align: center;
 }
 
-nav .dropdown-menu li.active,
+nav .dropdown-menu li:active,
 nav .dropdown-menu li:hover {
   color: #f5a6bd;
+}
+
+.el-button {
+  padding: 15px 15px;
+  font-size: 16px;
+  color: white;
+  background-color: transparent;
+}
+
+.el-button.is-plain:focus,
+.el-button.is-plain:hover {
+  color: darkgray;
+  background-color: transparent;
 }
 </style>
