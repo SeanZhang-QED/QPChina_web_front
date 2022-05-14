@@ -27,6 +27,11 @@
     - LiveEvent
     - (All pages' components should be here)...
 
+## After cloning, run the code below to install all the dependencies
+```
+npm intall
+```
+
 ## Compiles and hot-reloads for development
 ```
 npm run serve
