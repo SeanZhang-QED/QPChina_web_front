@@ -105,6 +105,10 @@ body {
   top: calc(50% - 230px);
 }
 
+.el-dialog__headerbtn .el-dialog__close{
+  font-size: 25px;
+}
+
 el-button:focus, 
 el-button:hover {
   color: initial;

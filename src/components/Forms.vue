@@ -3,8 +3,8 @@
     <div class="form">
       <h1>{{ isSignup ? "Sign Up" : "Log in" }}</h1>
       <div style="margin-bottom: 32px">
-        <span style="font-weight: lighter" >
-          {{ isSignup ? "Already a member?" : "New to this site?" }} 
+        <span style="font-weight: lighter">
+          {{ isSignup ? "Already a member?" : "New to this site?" }}
         </span>
         <button class="switch-btn" @click="handleSwitch">
           {{ isSignup ? "Log in" : "Sign Up" }}
@@ -12,15 +12,10 @@
       </div>
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm">
         <el-form-item label="Email" prop="email">
-          <el-input type="text" v-model="ruleForm.email">
-          </el-input>
+          <el-input type="text" v-model="ruleForm.email"> </el-input>
         </el-form-item>
         <el-form-item label="Password" prop="pass">
-          <el-input
-            type="text"
-            v-model="ruleForm.pass"
-            show-password
-          >
+          <el-input type="text" v-model="ruleForm.pass" show-password>
           </el-input>
         </el-form-item>
         <el-form-item>
@@ -34,17 +29,17 @@
       <p v-if="isSignup" style="font-weight: lighter">
         Join this site's community.
         <u class="show-more-btn" @click="handleShowMore">
-          {{ !isShowMore ? 'Read More': 'Show Less'}}
+          {{ !isShowMore ? "Read More" : "Show Less" }}
         </u>
       </p>
       <div class="details" v-if="isShowMore">
         <p>
           Connect with members of our site. Leave comments, follow people and
-        more.
-        </p> 
+          more.
+        </p>
         <p>
-          Your nickname, profile image, and public activity will be visible
-        on our site.
+          Your nickname, profile image, and public activity will be visible on
+          our site.
         </p>
       </div>
     </div>
@@ -52,24 +47,29 @@
 </template>
 
 <script>
+// import { isEmail } from '../utils/validate.js';
+import { isEmail } from '@/utils/validate';
+
 export default {
-  name: "log-form",
+  name: 'log-form',
   data() {
     var validateEmail = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("Please input your Email Address."));
+      console.log(isEmail(value));
+      if (value === '') {
+        callback(new Error('Please input your email address.'))
       } else {
+        if (!isEmail(value)) {
+          callback(new Error('Please input a VALID email address.'))
+        }
         callback();
       }
     };
     var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("Please input your password."));
+      if (value === '') {
+        callback(new Error('Please input your password.'));
       } else {
         if (value.length < 8) {
-          callback(
-            new Error("The length of the password should be greater then 8.")
-          );
+          callback(new Error('Password\'s length should be greater then 8.'));
         }
         callback();
       }
@@ -183,6 +183,6 @@ span {
 
 .show-more-btn:hover,
 .show-more-btn:active {
-  cursor:pointer;
+  cursor: pointer;
 }
 </style>

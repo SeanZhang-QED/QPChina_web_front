@@ -7,8 +7,11 @@
   - `/src/assets`: Images, SVGs
   - `/src/components`: Vue component files
   - `/src/router`: Vue router configuration files
-  - `/src/App.vue`: main Vue template for the project
-  - `/src/constants.js` : some constants, like base-url et al.
+  - `/src/utils/`
+    - `validate.js`: Validation functions
+    - `constants.js` : Some constants, like base-url et al
+  - `/src/App.vue`: Main Vue template for the project
+
 
 ## Template Structure
 
