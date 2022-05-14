@@ -1,49 +1,53 @@
 <template>
-  <div>
-    <h1>{{ isSignup ? 'Sign Up' : 'Log in' }}</h1>
-    <div style="margin-bottom: 32px">
-      <span>{{ isSignup ? 'Already a member?' : 'New to this site?' }} </span>
-      <button 
-        class="switch-button"
-        @click="handleSwitch"
-      >
-        {{ isSignup ? 'Log in' : 'Sign Up' }}
-      </button>
-    </div>
-    <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm">
-        <el-form-item 
-            label="Email" 
-            prop="email"
-        >
-            <el-input
-                style="width: 320px"
-                type="text"
-                v-model="ruleForm.email"
-            >
-            </el-input>
+  <div class="root">
+    <div class="form">
+      <h1>{{ isSignup ? "Sign Up" : "Log in" }}</h1>
+      <div style="margin-bottom: 32px">
+        <span style="font-weight: lighter" >
+          {{ isSignup ? "Already a member?" : "New to this site?" }} 
+        </span>
+        <button class="switch-btn" @click="handleSwitch">
+          {{ isSignup ? "Log in" : "Sign Up" }}
+        </button>
+      </div>
+      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm">
+        <el-form-item label="Email" prop="email">
+          <el-input type="text" v-model="ruleForm.email">
+          </el-input>
         </el-form-item>
-        <el-form-item 
-            label="Password"
-            prop="pass"
-        >
-            <el-input
-                style="width: 320px"
-                type="text"
-                v-model="ruleForm.pass"
-                show-password
-            >
-            </el-input>
+        <el-form-item label="Password" prop="pass">
+          <el-input
+            type="text"
+            v-model="ruleForm.pass"
+            show-password
+          >
+          </el-input>
         </el-form-item>
         <el-form-item>
-            <el-button 
-                style="width: 320px" 
-                plain
-                @click="submitForm('ruleForm')"
-            >
-                {{ isSignup ? 'Sign Up' : 'Log in' }}
-            </el-button>
+          <el-button style="width: 320px" plain @click="submitForm('ruleForm')">
+            {{ isSignup ? "Sign Up" : "Log in" }}
+          </el-button>
         </el-form-item>
-    </el-form>
+      </el-form>
+    </div>
+    <div class="detail">
+      <p v-if="isSignup" style="font-weight: lighter">
+        Join this site's community.
+        <u class="show-more-btn" @click="handleShowMore">
+          {{ !isShowMore ? 'Read More': 'Show Less'}}
+        </u>
+      </p>
+      <div class="details" v-if="isShowMore">
+        <p>
+          Connect with members of our site. Leave comments, follow people and
+        more.
+        </p> 
+        <p>
+          Your nickname, profile image, and public activity will be visible
+        on our site.
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -51,85 +55,134 @@
 export default {
   name: "log-form",
   data() {
-      var validateEmail = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('Please input your Email Address.'));
-        } else {
-          callback();
+    var validateEmail = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("Please input your Email Address."));
+      } else {
+        callback();
+      }
+    };
+    var validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("Please input your password."));
+      } else {
+        if (value.length < 8) {
+          callback(
+            new Error("The length of the password should be greater then 8.")
+          );
         }
-      };
-      var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('Please input your password.'));
-        } else {
-          if (value.length < 8) {
-            callback(new Error('The length of the password should be greater then 8.'));
-          }
-          callback();
-        }
-      };
-      return {
-          isSignup: true,
-          ruleForm: {
-            email: '',
-            pass: '',
-          },
-          rules: {
-            email: [{ validator: validateEmail, trigger: 'blur' }],
-            pass: [{ validator: validatePass, trigger: 'blur' }],
-          }
-      };
+        callback();
+      }
+    };
+    return {
+      isSignup: true,
+      isShowMore: false,
+      ruleForm: {
+        email: "",
+        pass: "",
+      },
+      rules: {
+        email: [{ validator: validateEmail, trigger: "blur" }],
+        pass: [{ validator: validatePass, trigger: "blur" }],
+      },
+    };
   },
   methods: {
-      handleSwitch() {
-          this.isSignup = !this.isSignup;
-      },
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            console.log('email is '+ this.ruleForm.email);
-            console.log('password is '+ this.ruleForm.pass);
-            /* send http request to the backend server here */
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
+    handleSwitch() {
+      this.isSignup = !this.isSignup;
+      if(!this.isSignup) {
+        this.isShowMore = false;
       }
-  }
+    },
+    handleShowMore() {
+      this.isShowMore = !this.isShowMore;
+    },
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          console.log("email is " + this.ruleForm.email);
+          console.log("password is " + this.ruleForm.pass);
+          /* send http request to the backend server here */
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+  },
 };
 </script>
 
 <style scoped>
 * {
-  text-align: center;
+  margin: 0;
+  widows: 540px;
   color: black;
+  text-align: center;
 }
 
 h1 {
-    font-size: 48px;
-    margin-top: 10px;
-    margin-bottom: 24px;
+  font-size: 48px;
+  margin-top: 10px;
+  margin-bottom: 24px;
 }
 
 span {
-    font-size: 18px;
-    margin: 0 4px;
+  font-size: 18px;
+  margin: 0 4px;
 }
 
-.switch-button {
-    font-size: 18px;
-    color: #C84869;
-    text-align: center;
-    border-width: 0;
-    background-color: transparent;
-    outline: none;
+.form {
+  width: 320px;
+  margin: auto;
+}
+
+.details {
+  width: 100%;
+}
+
+.switch-btn {
+  font-family: inherit;
+  font-size: 18px;
+  color: #c84869;
+  text-align: center;
+  border-width: 0;
+  background-color: transparent;
+  outline: none;
 }
 
 .el-button,
 .el-button.is-plain:focus,
 .el-button.is-plain:hover {
-    color: white;
-    background-color: #C84869;
+  color: white;
+  background-color: #c84869;
+}
+
+/* 父组件的 scoped 样式不能穿透到子组件上 */
+/* using /deep/ or >>> 避免使用非 scoped Style 污染全局样式 */
+/* .child /deep/ or >>> selector { } */
+.el-input >>> .el-input__inner {
+  border-width: 0 0 1px 0;
+  border-radius: 0;
+}
+
+.el-input >>> .el-input__inner:focus {
+  border-color: #c84869;
+}
+
+.details {
+  width: 540px;
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+/* Using a <u> element to mimic button */
+.show-more-btn {
+  font-weight: normal;
+}
+
+.show-more-btn:hover,
+.show-more-btn:active {
+  cursor:pointer;
 }
 </style>

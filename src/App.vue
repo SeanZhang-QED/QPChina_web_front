@@ -14,8 +14,9 @@
         :before-close="handleLoginClose"
         style="overflow: hidden"
       >
-      <Forms  style="margin: auto"/>
+        <Forms />
       </el-dialog>
+
       <div class="router-view">
         <!-- <router-view></router-view> -->
         <h1> {{ $route.path }} </h1>
@@ -97,6 +98,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.el-dialog__body {
+  position: fixed;
+  top: calc(50% - 230px);
 }
 
 el-button:focus, 

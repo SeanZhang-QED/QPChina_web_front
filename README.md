@@ -8,6 +8,7 @@
   - `/src/components`: Vue component files
   - `/src/router`: Vue router configuration files
   - `/src/App.vue`: main Vue template for the project
+  - `/src/constants.js` : some constants, like base-url et al.
 
 ## Template Structure
 
