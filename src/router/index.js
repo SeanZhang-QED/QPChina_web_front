@@ -5,6 +5,8 @@ import VueRouter from 'vue-router'
 import Home from '../components/Home'
 import AllEvent from '../components/AllEvent'
 import LiveEvent from '../components/LiveEvent'
+import WhatDoWeDo from '../components/WhatDoWeDo'
+
 
 
 // Declaring the use of plug-ins explicitly 
@@ -34,6 +36,12 @@ export default new VueRouter({
             name:'live-event',
             //coresponding component
             componenet: LiveEvent,
+        },
+        {
+            //rounter path
+            path:'/what-do-we-do',
+            name:'what-do-we-do',
+            component: WhatDoWeDo,
         }
     ]
 });
