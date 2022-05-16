@@ -48,28 +48,28 @@
 
 <script>
 // import { isEmail } from '../utils/validate.js';
-import { isEmail } from '@/utils/validate';
+import { isEmail } from "@/utils/validate";
+import axios from "axios";
 
 export default {
-  name: 'log-form',
+  name: "log-form",
   data() {
     var validateEmail = (rule, value, callback) => {
-      console.log(isEmail(value));
-      if (value === '') {
-        callback(new Error('Please input your email address.'))
+      if (value === "") {
+        callback(new Error("Please input your email address."));
       } else {
         if (!isEmail(value)) {
-          callback(new Error('Please input a VALID email address.'))
+          callback(new Error("Please input a VALID email address."));
         }
         callback();
       }
     };
     var validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('Please input your password.'));
+      if (value === "") {
+        callback(new Error("Please input your password."));
       } else {
         if (value.length < 8) {
-          callback(new Error('Password\'s length should be greater then 8.'));
+          callback(new Error("Password's length should be greater then 8."));
         }
         callback();
       }
@@ -90,7 +90,7 @@ export default {
   methods: {
     handleSwitch() {
       this.isSignup = !this.isSignup;
-      if(!this.isSignup) {
+      if (!this.isSignup) {
         this.isShowMore = false;
       }
     },
@@ -98,11 +98,33 @@ export default {
       this.isShowMore = !this.isShowMore;
     },
     submitForm(formName) {
+      // console.log(this.ruleForm);
+      // console.log("email is " + this.ruleForm.email);
+      // console.log("password is " + this.ruleForm.pass);
+
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log("email is " + this.ruleForm.email);
-          console.log("password is " + this.ruleForm.pass);
           /* send http request to the backend server here */
+          let requestMethod = this.isSignup ? "POST" : "GET";
+          let requestUrl = this.isSignup ? `/signup` : `/login`;
+          const opt = {
+            method: requestMethod,
+            url: requestUrl,
+            data: {
+              email: this.ruleForm.email,
+              password: this.ruleForm.pass,
+            },
+            headers: { "Content-Type": "application/json" },
+          };
+          axios(opt)
+            .then(() => {
+              /* TODO: How to handle login or sign up success */
+            })
+            .catch(() => {
+              /* TODO: Define what does the bad request retrun, and how to render the error */
+            })
+            .finally(() => {
+            });
         } else {
           console.log("error submit!!");
           return false;

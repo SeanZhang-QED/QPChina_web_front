@@ -76,7 +76,7 @@ body {
   /* 解决页面dialog出现时，页面padding增加，和页面滚动条消失造成的画面抖动 */
   padding-right: 0 !important;
   overflow-y: auto !important;
-  min-width: 1024px; 
+  min-width: 1080px; 
 }
 
 .app-body {
