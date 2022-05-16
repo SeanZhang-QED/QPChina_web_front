@@ -121,7 +121,7 @@ export default {
               /* TODO: How to handle login or sign up success */
             })
             .catch(() => {
-              /* TODO: Define what is the bad request retrun, and how to render the error */
+              /* TODO: Define what does the bad request retrun, and how to render the error */
             })
             .finally(() => {
             });

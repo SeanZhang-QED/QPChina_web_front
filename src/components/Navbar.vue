@@ -40,7 +40,7 @@
     <div class="menu-item"><a href="#">Opportunities</a></div>
     <div class="menu-item"><a href="#">Support Us</a></div>
     <div class="dropdown">
-      <button class="menu-item">Follow use</button>
+      <button class="menu-item">Follow Us</button>
       <ul class="dropdown-menu">
         <li>
           <a
@@ -123,6 +123,7 @@ nav .donation {
 }
 
 nav .menu-item {
+  white-space: nowrap;
   color: #f7cbd8;
   margin-left: 3px;
   padding: 15px 15px;
