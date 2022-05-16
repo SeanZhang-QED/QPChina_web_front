@@ -21,7 +21,7 @@
     <div class="dropdown">
       <button class="menu-item">About us</button>
       <ul class="dropdown-menu">
-        <li>What do we do</li>
+        <router-link to="/what-do-we-do" exact tag="li">What Do We Do</router-link>
         <li>Program overview</li>
         <li>Why we exist</li>
         <li>Milestones</li>
