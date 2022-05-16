@@ -19,10 +19,11 @@
 
       <div class="router-view">
         <!-- <router-view></router-view> -->
-        <h1> {{ $route.path }} </h1>
+        <!-- <h1> {{ $route.path }} </h1> -->
         <Home v-if="$route.name == 'home'"/>
         <AllEvent v-if="$route.name == 'all-event'" />
         <LiveEvent v-if="$route.name == 'live-event'" />
+        <WhatDoWeDo v-if="$route.name == 'what-do-we-do'"/>
       </div>
     </div>
   </div>
@@ -34,6 +35,7 @@ import Home from "./components/Home.vue";
 import AllEvent from "./components/AllEvent.vue";
 import LiveEvent from "./components/LiveEvent.vue";
 import Forms from "./components/Forms.vue"
+import WhatDoWeDo from "./components/WhatDoWeDo.vue";
 
 export default {
   name: "App",
@@ -51,8 +53,13 @@ export default {
     }
   },
   components: {
-    Navbar, Home, AllEvent, LiveEvent, Forms
-  },
+    Navbar,
+    Home,
+    AllEvent,
+    LiveEvent,
+    Forms,
+    WhatDoWeDo
+},
 }
 </script>
 
@@ -80,13 +87,6 @@ body {
   background-position-x: center;
   background-repeat:no-repeat;
   background-attachment:fixed;
-}
-
-.router-view,
-.app-dialog {
-  position: absolute;
-  top: 50%;
-  left: 45%;
 }
 
 .app-header {
