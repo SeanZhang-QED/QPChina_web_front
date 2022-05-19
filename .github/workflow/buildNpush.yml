@@ -1,0 +1,37 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code.
+# Then, build an image of the vue-project and upload it to docker hub.
+
+name: Build and push Vue to Docker Hub
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  push:
+    name: Build and push the Vue project iamge to Docker Hub
+    runs-on: ubuntu-latest
+    # container: node:16 # change the container version runs on the VM above
+    steps:
+      - name: Checkout code from GitHub
+        uses: actions/checkout@v3
+
+      - name: Install npm dependencies, and build project assets 
+        run: |
+          npm install
+          npm run build
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Build and push to Docker Hub
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/vue-ci-demo:latest
