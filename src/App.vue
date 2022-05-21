@@ -24,6 +24,8 @@
         <AllEvent v-if="$route.name == 'all-event'" />
         <LiveEvent v-if="$route.name == 'live-event'" />
         <WhatDoWeDo v-if="$route.name == 'what-do-we-do'"/>
+		<Corporate1 v-if="$route.name == 'corporate-and-board-policies'"/>
+		<Corporate2 v-if="$route.name == 'marketing-committee'"/>
       </div>
     </div>
   </div>
@@ -36,6 +38,8 @@ import AllEvent from "./components/AllEvent.vue";
 import LiveEvent from "./components/LiveEvent.vue";
 import Forms from "./components/Forms.vue"
 import WhatDoWeDo from "./components/WhatDoWeDo.vue";
+import Corporate1 from "./components/Corporate1.vue";
+import Corporate2 from "./components/Corporate2.vue";
 
 export default {
   name: "App",
@@ -58,8 +62,10 @@ export default {
     AllEvent,
     LiveEvent,
     Forms,
-    WhatDoWeDo
-},
+    WhatDoWeDo,
+	Corporate1,
+	Corporate2,
+	},
 }
 </script>
 
@@ -80,13 +86,13 @@ body {
 }
 
 .app-body {
-  height: 100vh;
+  height: 300vh;
   font-family: "monterrat", sans-serif;
-  background-image: url('assets/background_galaxy.jpg');
+  background-image: url('../dist/img/background_galaxy.baab1ee4.jpg');
   background-size:cover;
   background-position-x: center;
-  background-repeat:no-repeat;
-  background-attachment:fixed;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .app-header {

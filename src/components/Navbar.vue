@@ -33,8 +33,9 @@
     <div class="dropdown">
       <button class="menu-item">Governance</button>
       <ul class="dropdown-menu">
-        <li>Corporated and Board policies</li>
-        <li>Board and Committee</li>
+		<router-link to="/corporate-and-board-policies" exact tag="li">Corporate and Board Policies</router-link>
+		<router-link to="/marketing-committee" exact tag="li">Marketing Committee</router-link>
+        
       </ul>
     </div>
     <div class="menu-item"><a href="#">Opportunities</a></div>
@@ -136,6 +137,7 @@ nav .menu-item {
 nav button {
   background-color: transparent;
   border: none;
+  
 }
 
 nav .menu-item:active,
@@ -159,6 +161,7 @@ nav .menu-item,
   font-size: 16px;
   font-family: "monterrat", sans-serif;
   font-weight: bold;
+  
 }
 
 nav .donation a {
@@ -174,6 +177,7 @@ nav .dropdown-menu {
   border-radius: 0.25rem;
   background-color: #333333;
   display: none;
+  z-index: 19999;
 }
 
 nav .dropdown > button:hover + .dropdown-menu,
