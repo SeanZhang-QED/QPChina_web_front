@@ -14,7 +14,7 @@
     <div class="dropdown">
       <button class="menu-item">Event</button>
       <ul class="dropdown-menu">
-        <router-link to="/all-event" exact tag="li">All event</router-link>
+        <li @click="beforeToAllEvent">All event</li>
         <router-link to="/live-event" exact tag="li">Live event</router-link>
       </ul>
     </div>
@@ -89,12 +89,20 @@
 </template>
 
 <script>
+import router from '@/router';
 export default {
   name: "Nav-bar",
+  props:['isAuth'],
   methods: {
     handleOpen() {
       this.$emit("handle-login-open");
     },
+    beforeToAllEvent() {
+      // stop navigating when user is not authenticated
+      if(this.isAuth) {
+        router.push('/all-evnet');        
+      }
+    }
   },
 };
 </script>

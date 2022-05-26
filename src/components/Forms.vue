@@ -75,7 +75,7 @@ export default {
       }
     };
     return {
-      isSignup: true,
+      isSignup: false,
       isShowMore: false,
       ruleForm: {
         email: "",
