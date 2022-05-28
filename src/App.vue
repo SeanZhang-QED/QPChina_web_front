@@ -3,6 +3,7 @@
     <div class="app-header">
       <Navbar 
         @handle-login-open="handleLoginOpen"
+        :isAuth="false"
       />
     </div>
 
@@ -17,16 +18,14 @@
         <Forms />
       </el-dialog>
 
-      <div class="router-view">
-        <!-- <router-view></router-view> -->
-        <!-- <h1> {{ $route.path }} </h1> -->
-        <Home v-if="$route.name == 'home'"/>
-        <AllEvent v-if="$route.name == 'all-event'" />
-        <LiveEvent v-if="$route.name == 'live-event'" />
-        <WhatDoWeDo v-if="$route.name == 'what-do-we-do'"/>
-		<Corporate1 v-if="$route.name == 'corporate-and-board-policies'"/>
-		<Corporate2 v-if="$route.name == 'marketing-committee'"/>
-      </div>
+      <router-view>
+        <Home />
+        <AllEvent />
+        <LiveEvent />
+        <WhatDoWeDo />
+        <Corporate1 />
+        <Corporate2 />
+      </router-view>
     </div>
   </div>
 </template>
