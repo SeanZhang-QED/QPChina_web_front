@@ -18,10 +18,10 @@
 - .app-header
   - Navbar
 - .app-body
-  - Dialog
-    - Login
-    - Signup    
-  - .router-view
+  - Dialog, ie Forms
+    - LoginForm
+    - SignupForm    
+  - router-view
     - Home
     - AllEvent
     - LiveEvent
