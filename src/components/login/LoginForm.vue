@@ -73,6 +73,12 @@ export default {
             headers: { 'Content-Type': 'application/json' },
           };
           console.log(opt);
+          const loading = this.$loading({
+            lock: true,
+            text: 'Loading',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.7)'
+          });
           axios(opt)
             .then(() => {
                 this.$notify({
@@ -90,7 +96,9 @@ export default {
                     position: 'bottom-left',
                 });
             })
-            .finally(() => {});
+            .finally(() => {
+                loading.close();
+            });
         } else {
           this.$notify.error({
             title: 'Submit Failed',

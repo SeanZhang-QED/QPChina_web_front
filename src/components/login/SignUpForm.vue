@@ -39,7 +39,6 @@ import axios from "axios";
 
 export default {
   name: "signup-form",
-  inject: ['reloadThePage'],
   data() {
     var validateUsername = (rule, value, callback) => {
       if (value.length != 0) {
@@ -104,6 +103,12 @@ export default {
             },
             headers: { 'Content-Type': 'application/json' },
           };
+          const loading = this.$loading({
+            lock: true,
+            text: 'Loading',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.7)'
+          });
           axios(opt)
             .then(() => {
                 this.$notify({
@@ -121,7 +126,9 @@ export default {
                 position: 'bottom-left',
               });
             })
-            .finally(() => {});
+            .finally(() => {
+                loading.close();
+            });
         } else {
           this.$notify.error({
             title: 'Submit Failed',
