@@ -8,17 +8,15 @@
     </div>
 
     <div class="app-body">
-      <teleport to="body">
-        <el-dialog
+      <el-dialog
           class="app-dialog"
           fullscreen
           :visible.sync="isLoginClicked"
           :before-close="handleLoginClose"
           style="overflow: hidden"
         >
-          <Forms />
-        </el-dialog>
-      </teleport>
+          <Forms @handle-reload="handleLoginClose"/>
+      </el-dialog>
       <router-view>
         <Home />
         <AllEvent />
@@ -32,14 +30,14 @@
 </template>
 
 <script>
-import Navbar from "./components/layout/Navbar.vue";
+import Navbar from "./components/Navbar.vue";
 import Home from "./components/Home.vue";
 import AllEvent from "./components/event/AllEvent.vue";
 import LiveEvent from "./components/event/LiveEvent.vue";
 import Forms from "./components/login/Forms.vue"
 import WhatDoWeDo from "./components/about/WhatDoWeDo.vue";
-import Corporate1 from "./components/corporation/Corporate1.vue";
-import Corporate2 from "./components/corporation/Corporate2.vue";
+import Corporate1 from "./components/governance/Corporate1.vue";
+import Corporate2 from "./components/governance/Corporate2.vue";
 
 export default {
   name: "App",
@@ -63,8 +61,8 @@ export default {
     LiveEvent,
     Forms,
     WhatDoWeDo,
-	Corporate1,
-	Corporate2,
+    Corporate1,
+    Corporate2,
 	},
 }
 </script>
@@ -108,7 +106,7 @@ body {
 
 .el-dialog__body {
   position: fixed;
-  top: calc(50% - 230px);
+  top: calc(35% - 230px);
 }
 
 .el-dialog__headerbtn .el-dialog__close{

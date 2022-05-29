@@ -1,32 +1,25 @@
 <template>
   <div class="root">
     <div class="form">
-      <h1>{{ isSignup ? "Sign Up" : "Log in" }}</h1>
+      <h1>{{ selectedForm === "signup-form" ? "Sign Up" : "Log in" }}</h1>
       <div style="margin-bottom: 32px">
         <span style="font-weight: lighter">
-          {{ isSignup ? "Already a member?" : "New to this site?" }}
+          {{
+            selectedForm === "signup-form"
+              ? "Already a member?"
+              : "New to this site?"
+          }}
         </span>
-        <button class="switch-btn" @click="handleSwitch">
-          {{ isSignup ? "Log in" : "Sign Up" }}
+        <button class="switch-btn" @click="handleSwitch()">
+          {{ selectedForm === "signup-form" ? "Log in" : "Sign Up" }}
         </button>
       </div>
-      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm">
-        <el-form-item label="Email" prop="email">
-          <el-input type="text" v-model="ruleForm.email"> </el-input>
-        </el-form-item>
-        <el-form-item label="Password" prop="pass">
-          <el-input type="text" v-model="ruleForm.pass" show-password>
-          </el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button style="width: 320px" plain @click="submitForm('ruleForm')">
-            {{ isSignup ? "Sign Up" : "Log in" }}
-          </el-button>
-        </el-form-item>
-      </el-form>
+      <keep-alive>
+        <component :is="selectedForm" @handle-reload="$emit('handle-reload', $event)"></component>
+      </keep-alive>
     </div>
     <div class="detail">
-      <p v-if="isSignup" style="font-weight: lighter">
+      <p v-if="selectedForm === 'signup-form'" style="font-weight: lighter">
         Join this site's community.
         <u class="show-more-btn" @click="handleShowMore">
           {{ !isShowMore ? "Read More" : "Show Less" }}
@@ -48,89 +41,35 @@
 
 <script>
 // import { isEmail } from '../utils/validate.js';
-import { isEmail } from "@/utils/validate";
-import axios from "axios";
+import LoginForm from "../login/LoginForm.vue";
+import SignupForm from "../login/SignUpForm.vue";
 
 export default {
   name: "log-form",
+  components: {
+    LoginForm,
+    SignupForm,
+  },
   data() {
-    var validateEmail = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("Please input your email address."));
-      } else {
-        if (!isEmail(value)) {
-          callback(new Error("Please input a VALID email address."));
-        }
-        callback();
-      }
-    };
-    var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("Please input your password."));
-      } else {
-        if (value.length < 8) {
-          callback(new Error("Password's length should be greater then 8."));
-        }
-        callback();
-      }
-    };
     return {
+      selectedForm: 'login-form',
       isSignup: false,
       isShowMore: false,
-      ruleForm: {
-        email: "",
-        pass: "",
-      },
-      rules: {
-        email: [{ validator: validateEmail, trigger: "blur" }],
-        pass: [{ validator: validatePass, trigger: "blur" }],
-      },
     };
   },
   methods: {
     handleSwitch() {
       this.isSignup = !this.isSignup;
-      if (!this.isSignup) {
+      if (this.isSignup) {
+        this.selectedForm = 'signup-form';
+      } else {
+        this.selectedForm = 'login-form';
         this.isShowMore = false;
       }
     },
     handleShowMore() {
       this.isShowMore = !this.isShowMore;
-    },
-    submitForm(formName) {
-      // console.log(this.ruleForm);
-      // console.log("email is " + this.ruleForm.email);
-      // console.log("password is " + this.ruleForm.pass);
-
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          /* send http request to the backend server here */
-          let requestMethod = this.isSignup ? "POST" : "GET";
-          let requestUrl = this.isSignup ? `/signup` : `/login`;
-          const opt = {
-            method: requestMethod,
-            url: requestUrl,
-            data: {
-              email: this.ruleForm.email,
-              password: this.ruleForm.pass,
-            },
-            headers: { "Content-Type": "application/json" },
-          };
-          axios(opt)
-            .then(() => {
-              /* TODO: How to handle login or sign up success */
-            })
-            .catch(() => {
-              /* TODO: Define what does the bad request retrun, and how to render the error */
-            })
-            .finally(() => {
-            });
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
-    },
+    }
   },
 };
 </script>
@@ -155,7 +94,7 @@ span {
 }
 
 .form {
-  width: 320px;
+  width: 400px;
   margin: auto;
 }
 
@@ -173,25 +112,6 @@ span {
   outline: none;
 }
 
-.el-button,
-.el-button.is-plain:focus,
-.el-button.is-plain:hover {
-  color: white;
-  background-color: #c84869;
-}
-
-/* 父组件的 scoped 样式不能穿透到子组件上 */
-/* using /deep/ or >>> 避免使用非 scoped Style 污染全局样式 */
-/* .child /deep/ or >>> selector { } */
-.el-input >>> .el-input__inner {
-  border-width: 0 0 1px 0;
-  border-radius: 0;
-}
-
-.el-input >>> .el-input__inner:focus {
-  border-color: #c84869;
-}
-
 .details {
   width: 540px;
   font-size: 15px;
@@ -204,7 +124,9 @@ span {
 }
 
 .show-more-btn:hover,
-.show-more-btn:active {
+.show-more-btn:active,
+.switch-btn:hover,
+.switch-btn:active {
   cursor: pointer;
 }
 </style>

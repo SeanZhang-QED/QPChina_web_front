@@ -6,8 +6,8 @@ import Home from '../components/Home'
 import AllEvent from '../components/event/AllEvent'
 import LiveEvent from '../components/event/LiveEvent'
 import WhatDoWeDo from '../components/about/WhatDoWeDo'
-import Corporate1 from '../components/corporation/Corporate1'
-import Corporate2 from '../components/corporation/Corporate2'
+import Corporate1 from '../components/governance/Corporate1'
+import Corporate2 from '../components/governance/Corporate2'
 
 
 
