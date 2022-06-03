@@ -24,7 +24,9 @@ export default {
     }
   },
   beforeMount(){
-      fetch().then((res)=>{this.events = res})
+      fetch().then(
+        (res)=>{this.events = res}
+        )
   },
   methods: {
   }
