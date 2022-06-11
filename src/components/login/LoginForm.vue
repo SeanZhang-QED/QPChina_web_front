@@ -62,15 +62,16 @@ export default {
             email = this.ruleForm.email;
           }
           const opt = {
-            method: 'GET',
+            method: 'POST',
             url: `/login`,
+            headers: { 'Content-Type': 'application/json' },
             data: {
               email: email,
               username: username,
               phone: phone,
               password: this.ruleForm.pass,
             },
-            headers: { 'Content-Type': 'application/json' },
+            // withCredentials: true
           };
           console.log(opt);
           const loading = this.$loading({
