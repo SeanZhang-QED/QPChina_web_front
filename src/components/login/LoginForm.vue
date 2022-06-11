@@ -53,11 +53,11 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           /* send http request to the backend server here */
-          let email = '', usename = '', phone = '';
+          let email = '', username = '', phone = '';
           if (isPhone(this.ruleForm.email)) {
             phone = this.ruleForm.email;
           } else if (isUsername(this.ruleForm.email)) {
-            usename = this.ruleForm.email;
+            username = this.ruleForm.email;
           } else {
             email = this.ruleForm.email;
           }
@@ -66,7 +66,7 @@ export default {
             url: `/login`,
             data: {
               email: email,
-              usename: usename,
+              username: username,
               phone: phone,
               password: this.ruleForm.pass,
             },

@@ -86,7 +86,7 @@ body {
 .app-body {
   height: 300vh;
   font-family: "monterrat", sans-serif;
-  background-image: url('../dist/img/background_galaxy.baab1ee4.jpg');
+  background-image: url('./assets/background_galaxy.jpg');
   background-size:cover;
   background-position-x: center;
   background-repeat: no-repeat;
