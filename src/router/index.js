@@ -6,6 +6,8 @@ import Home from '../components/Home'
 import AllEvent from '../components/AllEvent'
 import LiveEvent from '../components/LiveEvent'
 import WhatDoWeDo from '../components/WhatDoWeDo'
+import Corporate1 from '../components/Corporate1'
+import Corporate2 from '../components/Corporate2.vue'
 
 
 
@@ -42,7 +44,21 @@ export default new VueRouter({
             path:'/what-do-we-do',
             name:'what-do-we-do',
             component: WhatDoWeDo,
-        }
+        },
+		{
+			//rounter path
+			path:'/corporate-and-board-policies',
+			name:'corporate-and-board-policies',
+			//coresponding component
+			component: Corporate1,
+		},
+		{
+			//rounter path
+			path:'/marketing-committee',
+			name:'marketing-committee',
+			//coresponding component
+			component: Corporate2,
+		}
     ]
 });
 

@@ -14,7 +14,7 @@
     <div class="dropdown">
       <button class="menu-item">Event</button>
       <ul class="dropdown-menu">
-        <router-link to="/all-event" exact tag="li">All event</router-link>
+        <li @click="beforeToAllEvent">All event</li>
         <router-link to="/live-event" exact tag="li">Live event</router-link>
       </ul>
     </div>
@@ -33,8 +33,9 @@
     <div class="dropdown">
       <button class="menu-item">Governance</button>
       <ul class="dropdown-menu">
-        <li>Corporated and Board policies</li>
-        <li>Board and Committee</li>
+		<router-link to="/corporate-and-board-policies" exact tag="li">Corporate and Board Policies</router-link>
+		<router-link to="/marketing-committee" exact tag="li">Marketing Committee</router-link>
+        
       </ul>
     </div>
     <div class="menu-item"><a href="#">Opportunities</a></div>
@@ -88,12 +89,20 @@
 </template>
 
 <script>
+import router from '@/router';
 export default {
   name: "Nav-bar",
+  props:['isAuth'],
   methods: {
     handleOpen() {
       this.$emit("handle-login-open");
     },
+    beforeToAllEvent() {
+      // stop navigating when user is not authenticated
+      if(this.isAuth) {
+        router.push('/all-evnet');        
+      }
+    }
   },
 };
 </script>
@@ -136,6 +145,7 @@ nav .menu-item {
 nav button {
   background-color: transparent;
   border: none;
+  
 }
 
 nav .menu-item:active,
@@ -159,6 +169,7 @@ nav .menu-item,
   font-size: 16px;
   font-family: "monterrat", sans-serif;
   font-weight: bold;
+  
 }
 
 nav .donation a {
@@ -174,6 +185,7 @@ nav .dropdown-menu {
   border-radius: 0.25rem;
   background-color: #333333;
   display: none;
+  z-index: 19999;
 }
 
 nav .dropdown > button:hover + .dropdown-menu,

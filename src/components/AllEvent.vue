@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "all-event",
   data(){
@@ -23,12 +24,13 @@ export default {
       events:[]
     }
   },
-  beforeMount(){
-      fetch().then(
-        (res)=>{this.events = res}
-        )
-  },
-  methods: {
+  mounted(){
+    axios({
+      method:'get',
+      url:'../assets/event.json'
+    }).then(
+      console.log(res => console.log(res))
+    )
   }
 };
 </script>
