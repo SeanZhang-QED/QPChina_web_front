@@ -3,8 +3,9 @@
     <div class="app-header">
       <Navbar 
         @handle-login-open="handleLoginOpen"
-        :isAuth="false"
+        :isAuth="true"
       />
+
     </div>
 
     <div class="app-body">
@@ -62,8 +63,8 @@ export default {
     LiveEvent,
     Forms,
     WhatDoWeDo,
-	  Corporate1,
-	  Corporate2,
+    Corporate1,
+    Corporate2,
 	},
 }
 </script>
@@ -85,7 +86,7 @@ body {
 }
 
 .app-body {
-  height: 300vh;
+  height: auto;
   font-family: "monterrat", sans-serif;
   background-image: url('./assets/background_galaxy.jpg');
   background-size:cover;

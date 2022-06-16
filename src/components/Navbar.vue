@@ -100,7 +100,7 @@ export default {
     beforeToAllEvent() {
       // stop navigating when user is not authenticated
       if(this.isAuth) {
-        router.push('/all-evnet');        
+        router.push('/all-event').catch(() => {});        
       }
     }
   },

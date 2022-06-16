@@ -1,80 +1,105 @@
 <template>
 
-<div class="background">
-  <h1 style="font-size:56px;">All Events</h1>
-      <div class="card">
-      <img src="https://static.wixstatic.com/media/b3b6b4_091e3905d60d403d9f92f06d8c21fc8f~mv2.png/v1/fill/w_775,h_1033,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/past%20event%20poster.png">
-      <div class="text">
-        <h2 style="font-size:16px;">4/6/22</h2>
-        <h2 style="font-size:25px;">Space Medicine & Astronautics w Dr Shawna Pandya</h2>
-        <p style="font-size: 18px; text-align: left; width:315px;">Space medicine is the practice of medicine on astronauts in outer space whereas astronautical hygiene is the application of science and technology to the prevention or control of exposure to the hazards that may cause astronaut ill health.</p>
-        <button>RSVP</button>
+  <div class="background">
+    <div class="box">
+      <h1 style="font-size:56px; padding-top:50px">All Events</h1>
+      <h1 style="font-size:17px; padding-top:20px ">with Thanks and Love</h1>
+      <div class="card" v-for="item in events" :key="item.id">
+        <img :src="`${item.image}`">
+        <div class="text">
+          <!-- can use momentjs to convert date format -->
+          <!-- https://stackoverflow.com/questions/28949911/what-does-this-format-means-t000000-000z -->
+          <h2 style="font-size:16px;">{{item.Event_Date}}</h2>
+          <h2 style="font-size:25px;">{{item.Event_Title}}</h2>
+          <p style="font-size: 18px; text-align: left; width:315px;">{{item.Event_Summary}}</p>
+          <button>RSVP</button>
+        </div>
       </div>
     </div>
-</div>
-    
+  </div>
+
 </template>
 
 <script>
 import axios from 'axios';
 export default {
   name: "all-event",
-  data(){
-    return{
-      events:[]
+  data() {
+    return {
+      events: []
     }
   },
-  mounted(){
+  mounted() {
     axios({
-      method:'get',
-      url:'../assets/event.json'
-    }).then(
-      console.log(res => console.log(res))
-    )
+      method: 'get',
+      url: '/event.json'
+    }).then(res => {
+      if (res.status === 200) {
+        // console.log(res)
+        this.events = res.data
+        // console.log(this.events[0].image)
+      }
+    }).catch(() =>
+    // console.log(err),
+    this.$notify.error({
+      title: 'Error',
+      message: 'Failed to fetch event data',
+      position: 'bottom-left'
+      })
+      );
+  },
+  methods: {
+
   }
 };
+
 </script>
 
 <style scoped>
-.background{
-  height: 100vh;
+.background {
+  height: auto;
   background-color: white;
+}
+
+.box {
   display: flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
 }
 
-.card{
+.card {
   margin: 50px;
   width: 804px;
   height: 570px;
   border: 1px solid;
-  border-color: rgba(232,230,230,1);
+  border-color: rgba(232, 230, 230, 1);
   box-shadow: 0px 1px 4px 0px black;
 }
 
 
 .card:hover {
   transform: scale(1.1);
-  transition: all 0.6s;
+  transition: all 0.4s ease-in-out 0s;
 }
 
-img{
+img {
   width: 50%;
   height: 100%;
   float: left;
 }
-.text{
+
+.text {
   height: 570px;
   display: flex;
   flex-direction: column;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
   text-align: center;
 }
-button{
-  width:109px;
+
+button {
+  width: 109px;
   height: 30px;
   background-color: #C84869;
   font-size: 20px;
