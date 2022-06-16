@@ -8,14 +8,12 @@ import LiveEvent from '../components/LiveEvent'
 import WhatDoWeDo from '../components/WhatDoWeDo'
 import Corporate1 from '../components/Corporate1'
 import Corporate2 from '../components/Corporate2.vue'
-
-
-
 // Declaring the use of plug-ins explicitly 
 Vue.use(VueRouter);
 
 // config router
 export default new VueRouter({
+
     mode:'history', // to delete the '#' in the url, from /#/home => /home 
     routes:[
         {
@@ -23,21 +21,21 @@ export default new VueRouter({
             path:'/',
             name:'home',
             //coresponding component
-            componenet: Home,
+            component: Home,
         },
         {
             //router path
             path:'/all-event',
             name:'all-event',
             //coresponding component
-            componenet: AllEvent,
+            component: AllEvent,
         },
         {
             //router path
             path:'/live-event',
             name:'live-event',
             //coresponding component
-            componenet: LiveEvent,
+            component: LiveEvent,
         },
         {
             //rounter path

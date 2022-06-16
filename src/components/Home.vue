@@ -1,5 +1,7 @@
 <template>
-  <h1>Home page</h1>
+<div style="height:100vh">
+<h1>Home page</h1>
+</div> 
 </template>
 
 <script>
