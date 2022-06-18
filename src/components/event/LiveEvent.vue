@@ -1,5 +1,7 @@
 <template>
+<div>
     <h1>Live Event</h1>
+</div>
 </template>
 
 <script>
@@ -9,7 +11,10 @@ export default {
 </script>
 
 <style scoped>
-h1 {
+div{
+  height: 100vh
+}
+h1{
   color: white;
 }
 </style>

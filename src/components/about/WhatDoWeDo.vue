@@ -122,14 +122,22 @@ h2 {
 }
 
 #mountain-pic {
+<<<<<<< HEAD:src/components/about/WhatDoWeDo.vue
     /* background-image: url("../assets/pic_mountain.jpg"); */
     background-image: url("~/src/assets/pic_mountain.jpg");
+=======
+    background-image: url("../assets/what-do-we-do/pic_mountain.jpg");
+>>>>>>> master:src/components/WhatDoWeDo.vue
     background-size: cover;
     float: left;
 }
 
 #cabin-pic {
+<<<<<<< HEAD:src/components/about/WhatDoWeDo.vue
     background-image: url("~/src/assets/pic_cabin.jpg");
+=======
+    background-image: url("../assets/what-do-we-do/pic_cabin.jpg");
+>>>>>>> master:src/components/WhatDoWeDo.vue
     background-size: cover;
     float: left;
 }
@@ -143,7 +151,11 @@ h2 {
     width: 100%;
     height: 100%;
     margin: auto;
+<<<<<<< HEAD:src/components/about/WhatDoWeDo.vue
     background-image: url("~/src/assets/pic_session.png");
+=======
+    background-image: url("../assets/what-do-we-do/pic_session.png");
+>>>>>>> master:src/components/WhatDoWeDo.vue
     background-repeat: no-repeat;
     background-size: 100% auto;
 }
@@ -173,7 +185,11 @@ h2 {
     width: 40%;
     height: 460px;
     float: left;
+<<<<<<< HEAD:src/components/about/WhatDoWeDo.vue
     background-image: url("~/src/assets/pic_snow.jpg");
+=======
+    background-image: url("../assets/what-do-we-do/pic_snow.jpg");
+>>>>>>> master:src/components/WhatDoWeDo.vue
     background-size: cover;
     background-color: orange;
 }
@@ -182,7 +198,11 @@ h2 {
     width: 60%;
     height: 460px;
     float: left;
+<<<<<<< HEAD:src/components/about/WhatDoWeDo.vue
     background-image: url("~/src/assets/pic_value.png");
+=======
+    background-image: url("../assets/what-do-we-do/pic_value.png");
+>>>>>>> master:src/components/WhatDoWeDo.vue
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;

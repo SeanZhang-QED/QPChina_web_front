@@ -6,6 +6,7 @@
         @handle-logout="handleLogout"
         :isAuth="isAuth"
       />
+
     </div>
 
     <div class="app-body">
@@ -89,7 +90,7 @@ body {
 }
 
 .app-body {
-  height: 300vh;
+  height: auto;
   font-family: "monterrat", sans-serif;
   background-image: url('./assets/background_galaxy.jpg');
   background-size:cover;

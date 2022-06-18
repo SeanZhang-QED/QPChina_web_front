@@ -16,6 +16,7 @@ Vue.use(VueRouter);
 
 // config router
 export default new VueRouter({
+
     mode:'history', // to delete the '#' in the url, from /#/home => /home 
     routes:[
         {
