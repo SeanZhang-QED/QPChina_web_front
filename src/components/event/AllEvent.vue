@@ -75,12 +75,15 @@ export default {
   border: 1px solid;
   border-color: rgba(232, 230, 230, 1);
   box-shadow: 0px 1px 4px 0px black;
+  /* 当hover离开时，续上断掉的transition动画 */
+  transition: all 0.4s ease-in-out 0s;
 }
-
 
 .card:hover {
   transform: scale(1.1);
-  transition: all 0.4s ease-in-out 0s;
+  /* 只要元素本身带有transitioin，该动画便会从当前动画执行到的地方，
+     以相同的时间返回原样。所以只用留元素本身的transition，comment了下面的代码 */
+  /* transition: all 0.4s linear 0s; */
 }
 
 img {
