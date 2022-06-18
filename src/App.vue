@@ -91,7 +91,7 @@ body {
 .app-body {
   height: auto;
   font-family: "monterrat", sans-serif;
-  background-image: url('./assets/background_galaxy.jpg');
+  background-image: url(https://static.wixstatic.com/media/9626a4_69ec6d841d774abd99efee7dbea4fcd7~mv2.jpg);
   background-size:cover;
   background-position-x: center;
   background-repeat: no-repeat;
