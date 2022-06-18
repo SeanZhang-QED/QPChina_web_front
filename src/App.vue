@@ -3,7 +3,8 @@
     <div class="app-header">
       <Navbar 
         @handle-login-open="handleLoginOpen"
-        :isAuth="false"
+        @handle-logout="handleLogout"
+        :isAuth="isAuth"
       />
     </div>
 
@@ -43,12 +44,16 @@ export default {
   name: "App",
   data() {
     return {
+      isAuth:false,
       isLoginClicked: false
     };
   },
   methods: {
     handleLoginOpen() {
       this.isLoginClicked = true;
+    },
+    handleLogout() {
+      this.isAuth = true;
     },
     handleLoginClose() {
       this.isLoginClicked = false;

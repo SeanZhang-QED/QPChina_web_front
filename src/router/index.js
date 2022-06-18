@@ -23,21 +23,21 @@ export default new VueRouter({
             path:'/',
             name:'home',
             //coresponding component
-            componenet: Home,
+            component: Home,
         },
         {
             //router path
             path:'/all-event',
             name:'all-event',
             //coresponding component
-            componenet: AllEvent,
+            component: AllEvent,
         },
         {
             //router path
             path:'/live-event',
             name:'live-event',
             //coresponding component
-            componenet: LiveEvent,
+            component: LiveEvent,
         },
         {
             //rounter path
