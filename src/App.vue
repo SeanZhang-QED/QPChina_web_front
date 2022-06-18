@@ -4,11 +4,10 @@
       <Navbar 
         @handle-login-open="handleLoginOpen"
         @handle-logout="handleLogout"
-        :isAuth="isAuth"
+        :isAuth="!isAuth"
       />
 
     </div>
-
     <div class="app-body">
       <el-dialog
           class="app-dialog"
