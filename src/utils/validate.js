@@ -11,3 +11,15 @@ export function isEmail(mail) {
     // multiple .**  => (\.[a-zA-Z0-9_-]+)+
     return /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(mail);
 }
+
+export function isUsername(username) {
+    return /^[a-zA-Z][a-zA-Z0-9]*$/.test(username);
+    // return /^(?![0-9~@*()_]+$)[\\da-zA-Z0-9]*$/.test(username);
+}
+
+export function isPhone(phone) {
+    // 0-9
+    // => [0-9]
+    // 000-000-0000 => 10
+    return /^[0-9]{10}$/.test(phone);
+}

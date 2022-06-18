@@ -122,13 +122,14 @@ h2 {
 }
 
 #mountain-pic {
-    background-image: url("../assets/what-do-we-do/pic_mountain.jpg");
+    /* background-image: url("../assets/pic_mountain.jpg"); */
+    background-image: url("~/src/assets/what-do-we-do/pic_mountain.jpg");
     background-size: cover;
     float: left;
 }
 
 #cabin-pic {
-    background-image: url("../assets/what-do-we-do/pic_cabin.jpg");
+    background-image: url("~/src/assets/what-do-we-do/pic_cabin.jpg");
     background-size: cover;
     float: left;
 }
@@ -142,7 +143,7 @@ h2 {
     width: 100%;
     height: 100%;
     margin: auto;
-    background-image: url("../assets/what-do-we-do/pic_session.png");
+    background-image: url("~/src/assets/what-do-we-do/pic_session.png");
     background-repeat: no-repeat;
     background-size: 100% auto;
 }
@@ -172,7 +173,7 @@ h2 {
     width: 40%;
     height: 460px;
     float: left;
-    background-image: url("../assets/what-do-we-do/pic_snow.jpg");
+    background-image: url("~/src/assets/what-do-we-do/pic_snow.jpg");
     background-size: cover;
     background-color: orange;
 }
@@ -181,7 +182,7 @@ h2 {
     width: 60%;
     height: 460px;
     float: left;
-    background-image: url("../assets/what-do-we-do/pic_value.png");
+    background-image: url("~/src/assets/what-do-we-do/pic_value.png");
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;

@@ -6,22 +6,35 @@
         type="plain"
         plain
         @click="handleOpen"
+        v-if="!isAuth"
       >
-        Login
+        <span> Log in </span>
       </el-button>
+      <el-dropdown v-if="isAuth" trigger="click" @command="handleCommand">
+        <span class="el-dropdown-link">
+          <i class="el-icon-user-solid"></i>
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="profile">Profile</el-dropdown-item>
+          <el-dropdown-item command="my-subscriptions">My Subscriptions</el-dropdown-item>
+          <el-dropdown-item command="my-acount">My Account</el-dropdown-item>
+          <el-dropdown-item command="doLogout" divided>Log out</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
-    <div class="menu-item"><router-link to="/" exact>Home</router-link></div>
+    <div class="menu-item"><router-link to="/">Home</router-link></div>
     <div class="dropdown">
       <button class="menu-item">Event</button>
       <ul class="dropdown-menu">
         <li @click="beforeToAllEvent">All event</li>
-        <router-link to="/live-event" exact tag="li">Live event</router-link>
+        <router-link to="/live-event" tag="li">Live event</router-link>
       </ul>
     </div>
     <div class="dropdown">
       <button class="menu-item">About us</button>
       <ul class="dropdown-menu">
-        <router-link to="/what-do-we-do" exact tag="li">What Do We Do</router-link>
+        <router-link to="/what-do-we-do" tag="li">What Do We Do</router-link>
         <li>Program overview</li>
         <li>Why we exist</li>
         <li>Milestones</li>
@@ -29,13 +42,16 @@
         <li>Our team</li>
       </ul>
     </div>
-    <div class="menu-item"><a href="#">Blogs</a></div>
+    <div class="menu-item"><a href="http://192.168.1.93:3000">Blogs</a></div>
     <div class="dropdown">
       <button class="menu-item">Governance</button>
       <ul class="dropdown-menu">
-		<router-link to="/corporate-and-board-policies" exact tag="li">Corporate and Board Policies</router-link>
-		<router-link to="/marketing-committee" exact tag="li">Marketing Committee</router-link>
-        
+        <router-link to="/corporate-and-board-policies" exact tag="li"
+          >Corporate and Board Policies</router-link
+        >
+        <router-link to="/marketing-committee" exact tag="li"
+          >Marketing Committee</router-link
+        >
       </ul>
     </div>
     <div class="menu-item"><a href="#">Opportunities</a></div>
@@ -77,7 +93,7 @@
         </li>
       </ul>
     </div>
-    <div class="menu-item donation">
+    <div class="donation">
       <a
         href="https://www.convergepay.com/hosted-payments/?ssl_txn_auth_token=A%2BknWH0rQYeJ%2BapqVBZZ3QAAAX%2BPTHr4&recurring=#!/payment-method"
         target="_blank"
@@ -89,20 +105,46 @@
 </template>
 
 <script>
-import router from '@/router';
+import router from "@/router";
 export default {
   name: "Nav-bar",
-  props:['isAuth'],
+  props: ["isAuth"],
   methods: {
     handleOpen() {
       this.$emit("handle-login-open");
     },
+    handleCommand(command) {
+      if (command === "doLogout") {
+        this.$emit("handle-logout");
+      } else {
+        console.log(`Will jump to ${command} page.`)
+        // let from = this.$route.fullPath;
+        // let to = router.resolve(`/${command}`).route.fullPath;
+        // if (from === to) {
+        //   return;
+        // }
+        // // route as expected
+        // router.push({ name: command });
+      }
+    },
     beforeToAllEvent() {
       // stop navigating when user is not authenticated
-      if(this.isAuth) {
-        router.push('/all-event').catch(() => {});        
+      if (!this.isAuth) return;
+      // M1: ignore the err
+      // router.push('/all-evnet').catch(()=>{});
+      // M2: compare the $route.matched against the desired route
+      // get comparable fullPaths
+      let from = this.$route.fullPath;
+      let to = router.resolve("/all-event").route.fullPath;
+
+      if (from === to) {
+        // handle any error due the redundant navigation here
+        // or handle any other param modification and route afterwards
+        return;
       }
-    }
+      // route as expected
+      router.push({ name: "all-event" });
+    },
   },
 };
 </script>
@@ -123,18 +165,34 @@ a {
   white-space: nowrap;
 }
 
+.el-dropdown-link {
+  cursor: pointer;
+  color: white;
+  font-size: 1.2em;
+}
+
+.el-dropdown-menu__item:focus,
+.el-dropdown-menu__item:not(.is-disabled):hover {
+  background-color: white;
+  color: #f7cbd8;
+}
+
 nav .donation {
   background-color: #f7cbd8;
   position: relative;
   text-align: center;
   /* border: 1px solid #f7cbd8; */
   border-radius: 6px;
+  padding: 12px 12px;
+  position: relative;
+  text-align: center;
+  display: flex;
 }
 
 nav .menu-item {
   white-space: nowrap;
   color: #f7cbd8;
-  margin-left: 3px;
+  /* margin-left: 3px; */
   padding: 15px 15px;
   position: relative;
   text-align: center;
@@ -145,7 +203,6 @@ nav .menu-item {
 nav button {
   background-color: transparent;
   border: none;
-  
 }
 
 nav .menu-item:active,
@@ -169,7 +226,6 @@ nav .menu-item,
   font-size: 16px;
   font-family: "monterrat", sans-serif;
   font-weight: bold;
-  
 }
 
 nav .donation a {
