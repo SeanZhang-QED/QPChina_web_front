@@ -3,22 +3,21 @@
     <div class="app-header">
       <Navbar 
         @handle-login-open="handleLoginOpen"
-        :isAuth="true"
+        @handle-logout="handleLogout"
+        :isAuth="!isAuth"
       />
 
     </div>
-
     <div class="app-body">
       <el-dialog
-        class="app-dialog"
-        fullscreen
-        :visible.sync="isLoginClicked"
-        :before-close="handleLoginClose"
-        style="overflow: hidden"
-      >
-        <Forms />
+          class="app-dialog"
+          fullscreen
+          :visible.sync="isLoginClicked"
+          :before-close="handleLoginClose"
+          style="overflow: hidden"
+        >
+          <Forms @handle-reload="handleLoginClose"/>
       </el-dialog>
-
       <router-view>
         <Home />
         <AllEvent />
@@ -34,23 +33,27 @@
 <script>
 import Navbar from "./components/Navbar.vue";
 import Home from "./components/Home.vue";
-import AllEvent from "./components/AllEvent.vue";
-import LiveEvent from "./components/LiveEvent.vue";
-import Forms from "./components/Forms.vue"
-import WhatDoWeDo from "./components/WhatDoWeDo.vue";
-import Corporate1 from "./components/Corporate1.vue";
-import Corporate2 from "./components/Corporate2.vue";
+import AllEvent from "./components/event/AllEvent.vue";
+import LiveEvent from "./components/event/LiveEvent.vue";
+import Forms from "./components/login/Forms.vue"
+import WhatDoWeDo from "./components/about/WhatDoWeDo.vue";
+import Corporate1 from "./components/governance/Corporate1.vue";
+import Corporate2 from "./components/governance/Corporate2.vue";
 
 export default {
   name: "App",
   data() {
     return {
+      isAuth:false,
       isLoginClicked: false
     };
   },
   methods: {
     handleLoginOpen() {
       this.isLoginClicked = true;
+    },
+    handleLogout() {
+      this.isAuth = true;
     },
     handleLoginClose() {
       this.isLoginClicked = false;
@@ -88,7 +91,7 @@ body {
 .app-body {
   height: auto;
   font-family: "monterrat", sans-serif;
-  background-image: url('./assets/background_galaxy.jpg');
+  background-image: url(https://static.wixstatic.com/media/9626a4_69ec6d841d774abd99efee7dbea4fcd7~mv2.jpg);
   background-size:cover;
   background-position-x: center;
   background-repeat: no-repeat;
@@ -108,7 +111,7 @@ body {
 
 .el-dialog__body {
   position: fixed;
-  top: calc(50% - 230px);
+  top: calc(35% - 230px);
 }
 
 .el-dialog__headerbtn .el-dialog__close{

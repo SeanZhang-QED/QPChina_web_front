@@ -3,11 +3,14 @@ import VueRouter from 'vue-router'
 
 // import components
 import Home from '../components/Home'
-import AllEvent from '../components/AllEvent'
-import LiveEvent from '../components/LiveEvent'
-import WhatDoWeDo from '../components/WhatDoWeDo'
-import Corporate1 from '../components/Corporate1'
-import Corporate2 from '../components/Corporate2.vue'
+import AllEvent from '../components/event/AllEvent'
+import LiveEvent from '../components/event/LiveEvent'
+import WhatDoWeDo from '../components/about/WhatDoWeDo'
+import Corporate1 from '../components/governance/Corporate1'
+import Corporate2 from '../components/governance/Corporate2'
+
+
+
 // Declaring the use of plug-ins explicitly 
 Vue.use(VueRouter);
 

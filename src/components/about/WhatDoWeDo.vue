@@ -122,13 +122,14 @@ h2 {
 }
 
 #mountain-pic {
-    background-image: url("../assets/what-do-we-do/pic_mountain.jpg");
+    /* background-image: url("../assets/pic_mountain.jpg"); */
+    background-image: url(https://static.wixstatic.com/media/cba70e5cb55249da9c15e20333071cc0.jpg);
     background-size: cover;
     float: left;
 }
 
 #cabin-pic {
-    background-image: url("../assets/what-do-we-do/pic_cabin.jpg");
+    background-image: url(https://static.wixstatic.com/media/11062b_2e268f5679d8466aa20db6acd69774fb~mv2.jpg);
     background-size: cover;
     float: left;
 }
@@ -142,9 +143,10 @@ h2 {
     width: 100%;
     height: 100%;
     margin: auto;
-    background-image: url("../assets/what-do-we-do/pic_session.png");
+    background-image: url("~/src/assets/what-do-we-do/pic_session.png");
     background-repeat: no-repeat;
     background-size: 100% auto;
+    background-color: white;
 }
 
 .our-belief {
@@ -172,16 +174,17 @@ h2 {
     width: 40%;
     height: 460px;
     float: left;
-    background-image: url("../assets/what-do-we-do/pic_snow.jpg");
-    background-size: cover;
-    background-color: orange;
+    background-image: url(https://static.wixstatic.com/media/11062b_77378fc0da68439ebd8fd24a2f51e50cf000.jpg);
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-color: white;
 }
 
 #our-value {
     width: 60%;
     height: 460px;
     float: left;
-    background-image: url("../assets/what-do-we-do/pic_value.png");
+    background-image: url("~/src/assets/what-do-we-do/pic_value.png");
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
