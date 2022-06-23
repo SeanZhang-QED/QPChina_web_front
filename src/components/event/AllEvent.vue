@@ -98,12 +98,13 @@ export default {
   border: 1px solid;
   border-color: rgba(232, 230, 230, 1);
   box-shadow: 0px 1px 4px 0px black;
+  transition: all 0.4s ease-in-out 0s;
+
 }
 
 
 .card:hover {
   transform: scale(1.1);
-  transition: all 0.4s ease-in-out 0s;
 }
 
 img {
