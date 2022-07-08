@@ -25,6 +25,7 @@
         <WhatDoWeDo />
         <Corporate1 />
         <Corporate2 />
+        <!-- <EventDetail /> -->
       </router-view>
     </div>
   </div>
@@ -39,7 +40,7 @@ import Forms from "./components/login/Forms.vue"
 import WhatDoWeDo from "./components/about/WhatDoWeDo.vue";
 import Corporate1 from "./components/governance/Corporate1.vue";
 import Corporate2 from "./components/governance/Corporate2.vue";
-import EventDetail from "./components/event/EventDetail.vue";
+// import EventDetail from "./components/event/EventDetail.vue";
 
 export default {
   name: "App",
@@ -69,7 +70,7 @@ export default {
     WhatDoWeDo,
     Corporate1,
     Corporate2,
-    EventDetail
+    // EventDetail
 },
 }
 </script>

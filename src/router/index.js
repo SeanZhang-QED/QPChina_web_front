@@ -32,8 +32,7 @@ export default new VueRouter({
             path:'/all-event',
             name:'all-event',
             //coresponding component
-            component: AllEvent,
-            
+            component: AllEvent,  
         },
         {
             //router path
@@ -67,6 +66,9 @@ export default new VueRouter({
             name: 'event-detail',
             component: EventDetail
         }
-    ]
+    ],
+    scrollBehavior () {       //添加该方法
+        return { x: 0, y: 0}
+      }
 });
 

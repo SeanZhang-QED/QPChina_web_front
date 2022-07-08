@@ -5,17 +5,17 @@
       <h1 style="font-size:56px; padding-top:50px">All Events</h1>
       <h1 style="font-size:17px; padding-top:20px ">with Thanks and Love</h1>
       <div class="card" v-for="item in paginatedEvents" :key="item.id">
-        <img :src="`${item.image}`">
+        <img :src="`${item.poster}`">
         <div class="text">
           <!-- can use momentjs to convert date format -->
           <!-- https://stackoverflow.com/questions/28949911/what-does-this-format-means-t000000-000z -->
-          <h2 style="font-size:16px;">{{ item.Event_Date }}</h2>
-          <h2 style="font-size:25px;">{{ item.Event_Title }}</h2>
-          <p style="font-size: 18px; text-align: left; width:315px;">{{ item.Event_Summary }}</p>
-          <router-link :to="`/all-event/${item.Event_Title}`">
-            <button>RSVP</button>
+          <h2 style="font-size:16px;">{{ item.event_date }}</h2>
+          <h2 style="font-size:25px;">{{ item.event_title }}</h2>
+          <p style="font-size: 18px; text-align: left; width:315px;">{{ item.event_summary }}</p>
+          <router-link :to="`/all-event/${item.event_id}`">
+            <button>RSVP</button> 
           </router-link>
-        <!-- @click="jump(item.Event_Title) -->
+            <!-- <button @click="jump(item.Event_Title)">RSVP</button> -->
         </div>
       </div>
     </div>
@@ -51,8 +51,9 @@ export default {
     }).then(
       res => {
         if (res.status === 200) {
-          // console.log(res)
+          console.log(res)
           this.events = res.data;
+          console.log(this.events)
           this.paginatedEvents = this.events.slice(0, this.pageSize)
         }
       }).catch(() =>
@@ -72,6 +73,14 @@ export default {
       console.log(start, end)
       this.paginatedEvents = this.events.slice(start, end);
     },
+    jump(title){
+      this.$router.push(
+        {
+          path:`/all-event/${title}`
+        }
+      )
+
+    }
   },
   computed: {
 
