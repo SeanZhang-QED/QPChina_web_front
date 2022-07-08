@@ -59,7 +59,10 @@ export default new VueRouter({
 			name:'marketing-committee',
 			//coresponding component
 			component: Corporate2,
-		}
+		},
+        {
+            path:'/all-event/'
+        }
     ]
 });
 
