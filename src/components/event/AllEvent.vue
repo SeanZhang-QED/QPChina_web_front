@@ -12,7 +12,10 @@
           <h2 style="font-size:16px;">{{ item.Event_Date }}</h2>
           <h2 style="font-size:25px;">{{ item.Event_Title }}</h2>
           <p style="font-size: 18px; text-align: left; width:315px;">{{ item.Event_Summary }}</p>
-          <button @click="jump(item.Event_Title)">RSVP</button>
+          <router-link :to="`/all-event/${item.Event_Title}`">
+            <button>RSVP</button>
+          </router-link>
+        <!-- @click="jump(item.Event_Title) -->
         </div>
       </div>
     </div>
@@ -69,12 +72,6 @@ export default {
       console.log(start, end)
       this.paginatedEvents = this.events.slice(start, end);
     },
-    jump(title) {
-      this.$router.push(
-        `/all-event/${title}`
-      )
-    }
-
   },
   computed: {
 

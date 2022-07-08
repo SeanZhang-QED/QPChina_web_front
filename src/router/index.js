@@ -8,6 +8,7 @@ import LiveEvent from '../components/event/LiveEvent'
 import WhatDoWeDo from '../components/about/WhatDoWeDo'
 import Corporate1 from '../components/governance/Corporate1'
 import Corporate2 from '../components/governance/Corporate2'
+import EventDetail from '../components/event/EventDetail'
 
 
 
@@ -32,6 +33,7 @@ export default new VueRouter({
             name:'all-event',
             //coresponding component
             component: AllEvent,
+            
         },
         {
             //router path
@@ -61,7 +63,9 @@ export default new VueRouter({
 			component: Corporate2,
 		},
         {
-            path:'/all-event/'
+            path:'/all-event/:title',
+            name: 'event-detail',
+            component: EventDetail
         }
     ]
 });
