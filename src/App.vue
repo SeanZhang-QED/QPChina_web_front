@@ -82,6 +82,7 @@ export default {
   /* subtract the size of scrollbar: for window, it may be 12px - 20px, for chrome 16px*/
   width: 100vw - 20px;
   box-sizing: border-box;
+  /* cursor:pointer */
 }
 
 body {

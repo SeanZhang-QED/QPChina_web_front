@@ -62,7 +62,7 @@ export default new VueRouter({
 			component: Corporate2,
 		},
         {
-            path:'/all-event/:title',
+            path:'/all-event/:id',
             name: 'event-detail',
             component: EventDetail
         }

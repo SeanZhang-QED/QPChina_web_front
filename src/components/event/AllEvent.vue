@@ -12,10 +12,11 @@
           <h2 style="font-size:16px;">{{ item.event_date }}</h2>
           <h2 style="font-size:25px;">{{ item.event_title }}</h2>
           <p style="font-size: 18px; text-align: left; width:315px;">{{ item.event_summary }}</p>
-          <router-link :to="`/all-event/${item.event_id}`">
+          
+          <!-- <router-link :to="`/all-event/${item.event_id}`">
             <button>RSVP</button> 
-          </router-link>
-            <!-- <button @click="jump(item.Event_Title)">RSVP</button> -->
+          </router-link> -->
+          <button @click="jump(item.event_id)">RSVP</button>
         </div>
       </div>
     </div>
@@ -51,9 +52,9 @@ export default {
     }).then(
       res => {
         if (res.status === 200) {
-          console.log(res)
+          // console.log(res)
           this.events = res.data;
-          console.log(this.events)
+          // console.log(this.events)
           this.paginatedEvents = this.events.slice(0, this.pageSize)
         }
       }).catch(() =>
