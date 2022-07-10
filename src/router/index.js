@@ -8,6 +8,7 @@ import LiveEvent from '../components/event/LiveEvent'
 import WhatDoWeDo from '../components/about/WhatDoWeDo'
 import Corporate1 from '../components/governance/Corporate1'
 import Corporate2 from '../components/governance/Corporate2'
+import EventDetail from '../components/event/EventDetail'
 
 
 
@@ -31,7 +32,7 @@ export default new VueRouter({
             path:'/all-event',
             name:'all-event',
             //coresponding component
-            component: AllEvent,
+            component: AllEvent,  
         },
         {
             //router path
@@ -59,7 +60,15 @@ export default new VueRouter({
 			name:'marketing-committee',
 			//coresponding component
 			component: Corporate2,
-		}
-    ]
+		},
+        {
+            path:'/all-event/:id',
+            name: 'event-detail',
+            component: EventDetail
+        }
+    ],
+    scrollBehavior () {       //添加该方法
+        return { x: 0, y: 0}
+      }
 });
 
