@@ -17,6 +17,7 @@
 <script>
 import { isEmail, isUsername, isPhone } from "@/utils/validate";
 import axios from "axios";
+import { BASE_URL } from '@/utils/constants';
 
 export default {
   name: "log-in-form",
@@ -67,7 +68,7 @@ export default {
         } else {
           email = this.ruleForm.email;
         }
-        const loginUrl = `/login/${this.asAdmin ? "admin" : "user"}`;
+        const loginUrl = `${BASE_URL}/login/user`;
         const opt = {
           method: "POST",
           url: loginUrl,

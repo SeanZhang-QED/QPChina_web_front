@@ -9,6 +9,7 @@ import WhatDoWeDo from '../components/about/WhatDoWeDo'
 import Corporate1 from '../components/governance/Corporate1'
 import Corporate2 from '../components/governance/Corporate2'
 import EventDetail from '../components/event/EventDetail'
+import Admin from '../components/admin/Admin'
 
 
 
@@ -26,6 +27,13 @@ export default new VueRouter({
             name:'home',
             //coresponding component
             component: Home,
+        },
+        {
+            //router path
+            path:'/admin',
+            name:'admin-page',
+            //coresponding component
+            component: Admin,
         },
         {
             //router path
