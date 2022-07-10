@@ -112,6 +112,7 @@ export default {
   border-color: rgba(232, 230, 230, 1);
   box-shadow: 0px 1px 4px 0px black;
   transition: all 0.4s ease-in-out 0s;
+  overflow:auto
 
 }
 
@@ -127,6 +128,7 @@ img {
 }
 
 .text {
+  width: auto;
   height: 570px;
   display: flex;
   flex-direction: column;

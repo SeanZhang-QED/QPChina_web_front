@@ -32,13 +32,12 @@ export default {
     $route: {
       handler(){
         this.id = this.$route.params.id;
-        console.log(typeof this.id)
+        // console.log(typeof this.id)
         this.getData(this.id)
       },
       immediate: true
     },
   },
-
   methods: {
     jump(id) {
       this.$router.push({path:`/all-event/${id}`})
@@ -96,7 +95,4 @@ button{
   padding: 20px;
   margin: 50px;
 }
-
-
-
 </style>
