@@ -26,7 +26,9 @@ export default {
         callback(new Error("This filed cannot be emtpy."));
       } else {
         if (!isEmail(value) && !isUsername(value) && !isPhone(value)) {
-          callback(new Error("Please enter a valid email address or username."));
+          callback(
+            new Error("Please enter a valid email address or username.")
+          );
         }
       }
       callback();
@@ -38,6 +40,7 @@ export default {
       callback();
     };
     return {
+      asAdmin: false,
       ruleForm: {
         email: "",
         pass: "",
@@ -51,62 +54,46 @@ export default {
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
-        if (valid) {
-          /* send http request to the backend server here */
-          let email = '', username = '', phone = '';
-          if (isPhone(this.ruleForm.email)) {
-            phone = this.ruleForm.email;
-          } else if (isUsername(this.ruleForm.email)) {
-            username = this.ruleForm.email;
-          } else {
-            email = this.ruleForm.email;
-          }
-          const opt = {
-            method: 'POST',
-            url: `/login`,
-            headers: { 'Content-Type': 'application/json' },
-            data: {
-              email: email,
-              username: username,
-              phone: phone,
-              password: this.ruleForm.pass,
-            },
-            // withCredentials: true
-          };
-          console.log(opt);
-          const loading = this.$loading({
-            lock: true,
-            text: 'Loading',
-            spinner: 'el-icon-loading',
-            background: 'rgba(0, 0, 0, 0.7)'
-          });
-          axios(opt)
-            .then(() => {
-                this.$notify({
-                    title: 'Login Success',
-                    message: 'Wecome back!',
-                    type: 'success',
-                    position: 'bottom-left',
-                });
-                this.$emit('handle-reload');
-            })
-            .catch(() => {
-                this.$notify.error({
-                    title: 'Login Failed',
-                    message: 'Failed to Login, please check your credentials.',
-                    position: 'bottom-left',
-                });
-            })
-            .finally(() => {
-                loading.close();
-            });
-        } else {
-          this.$notify.error({
-            title: 'Submit Failed',
-            message: 'Errors occured in the input fields.',
-            position: 'bottom-left',
-          });
+        if (!valid) {
+          this.$notify.error({title: "Submit Failed", message: "Errors occured in the input fields.", position: "bottom-left",});
+          return;
         }
+        /* send http request to the backend server here */
+        let email = "", username = "", phone = "";
+        if (isPhone(this.ruleForm.email)) {
+          phone = this.ruleForm.email;
+        } else if (isUsername(this.ruleForm.email)) {
+          username = this.ruleForm.email;
+        } else {
+          email = this.ruleForm.email;
+        }
+        const loginUrl = `/login/${this.asAdmin ? "admin" : "user"}`;
+        const opt = {
+          method: "POST",
+          url: loginUrl,
+          headers: { "Content-Type": "application/json" },
+          data: {
+            email: email,
+            username: username,
+            phone: phone,
+            password: this.ruleForm.pass,
+          },
+        };
+        // console.log(opt);
+        const loading = this.$loading({lock: true, text: "Loading", spinner: "el-icon-loading", background: "rgba(0, 0, 0, 0.7)",});
+        axios(opt)
+          .then((data) => {
+            console.log(data);
+            this.$notify({title: "Login Success", message: "Wecome back!", type: "success", position: "bottom-left",});
+            this.$emit('handle-reload');
+          })
+          .catch((err) => {
+            // which is out of the range of 2xx
+            this.$notify.error({title: "Login Failed", message: `Failed to Login: ${err.message}, please check your credentials.`, position: "bottom-left",});
+          })
+          .finally(() => {
+            loading.close();
+          });
       });
     },
   },

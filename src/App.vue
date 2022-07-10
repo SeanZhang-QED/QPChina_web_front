@@ -4,7 +4,8 @@
       <Navbar 
         @handle-login-open="handleLoginOpen"
         @handle-logout="handleLogout"
-        :isAuth="!isAuth"
+        @handleLoginOnSuccess="handleLoginOnSuccess"
+        :isAuth="isAuth"
       />
 
     </div>
@@ -53,11 +54,12 @@ export default {
       this.isLoginClicked = true;
     },
     handleLogout() {
-      this.isAuth = true;
+      this.isAuth = false;
     },
     handleLoginClose() {
+      this.isAuth = true;
       this.isLoginClicked = false;
-    }
+    },
   },
   components: {
     Navbar,
