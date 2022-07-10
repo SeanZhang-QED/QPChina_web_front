@@ -120,4 +120,8 @@ export default {
 .el-input >>> .el-input__inner:focus {
   border-color: #c84869;
 }
+
+.el-button.is-plain:focus, .el-button.is-plain:hover {
+  border-color: #c84869;
+}
 </style>
