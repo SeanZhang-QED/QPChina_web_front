@@ -115,7 +115,6 @@ export default {
 
 }
 
-
 .card:hover {
   transform: scale(1.1);
 }

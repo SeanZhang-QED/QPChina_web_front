@@ -4,7 +4,7 @@
       <Navbar 
         @handle-login-open="handleLoginOpen"
         @handle-logout="handleLogout"
-        :isAuth="!isAuth"
+        :isAuth="isAuth"
       />
 
     </div>
@@ -19,13 +19,6 @@
           <Forms @handle-reload="handleLoginClose"/>
       </el-dialog>
       <router-view>
-        <Home />
-        <AllEvent />
-        <LiveEvent />
-        <WhatDoWeDo />
-        <Corporate1 />
-        <Corporate2 />
-        <!-- <EventDetail /> -->
       </router-view>
     </div>
   </div>
@@ -33,14 +26,7 @@
 
 <script>
 import Navbar from "./components/Navbar.vue";
-import Home from "./components/Home.vue";
-import AllEvent from "./components/event/AllEvent.vue";
-import LiveEvent from "./components/event/LiveEvent.vue";
-import Forms from "./components/login/Forms.vue"
-import WhatDoWeDo from "./components/about/WhatDoWeDo.vue";
-import Corporate1 from "./components/governance/Corporate1.vue";
-import Corporate2 from "./components/governance/Corporate2.vue";
-// import EventDetail from "./components/event/EventDetail.vue";
+import Forms from "./components/login/Forms.vue";
 
 export default {
   name: "App",
@@ -55,22 +41,16 @@ export default {
       this.isLoginClicked = true;
     },
     handleLogout() {
-      this.isAuth = true;
+      this.isAuth = false;
     },
     handleLoginClose() {
+      this.isAuth = true;
       this.isLoginClicked = false;
-    }
+    },
   },
   components: {
     Navbar,
-    Home,
-    AllEvent,
-    LiveEvent,
     Forms,
-    WhatDoWeDo,
-    Corporate1,
-    Corporate2,
-    // EventDetail
 },
 }
 </script>

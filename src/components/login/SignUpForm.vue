@@ -35,7 +35,7 @@
 <script>
 import { isEmail, isUsername } from "@/utils/validate";
 import axios from "axios";
-
+import { BASE_URL } from "@/utils/constants";
 
 export default {
   name: "signup-form",
@@ -46,7 +46,9 @@ export default {
           callback(new Error("Use a shorter one as your username."));
         } else if (!isUsername(value)) {
           callback(
-            new Error("Username should start with a letter and only contains letters and numbers.")
+            new Error(
+              "Username should start with a letter and only contains letters and numbers."
+            )
           );
         }
       }
@@ -70,17 +72,17 @@ export default {
     };
     return {
       signUpForm: {
-        email: '',
-        pass: '',
-        username: '',
-        fullname: '',
-        phone: '',
-        age: '',
+        email: "",
+        pass: "",
+        username: "",
+        fullname: "",
+        phone: "",
+        age: "",
       },
       rules: {
-        username: [{ validator: validateUsername, trigger: 'blur' }],
-        email: [{ validator: validateEmail, trigger: 'blur' }],
-        pass: [{ validator: validatePass, trigger: 'blur' }],
+        username: [{ validator: validateUsername, trigger: "blur" }],
+        email: [{ validator: validateEmail, trigger: "blur" }],
+        pass: [{ validator: validatePass, trigger: "blur" }],
       },
     };
   },
@@ -88,54 +90,54 @@ export default {
     submitForm(formName) {
       console.log(this.signUpForm);
       this.$refs[formName].validate((valid) => {
-        if (valid) {
-          /* send http request to the backend server here */
-          const opt = {
-            method: 'POST',
-            url: `/signup`,
-            data: {
-              email: this.signUpForm.email,
-              password: this.signUpForm.pass,
-              username: this.signUpForm.username,
-              fullname: this.signUpForm.fullname,
-              age: this.signUpForm.age,
-              phone: this.signUpForm.phone,
-            },
-            headers: { 'Content-Type': 'application/json' },
-          };
-          const loading = this.$loading({
-            lock: true,
-            text: 'Loading',
-            spinner: 'el-icon-loading',
-            background: 'rgba(0, 0, 0, 0.7)'
-          });
-          axios(opt)
-            .then(() => {
-                this.$notify({
-                    title: 'SignUp Success',
-                    message: 'some message',
-                    type: 'success',
-                    position: 'bottom-left',
-                });
-                this.$emit('handle-reload');
-            })
-            .catch(() => {
-              this.$notify.error({
-                title: 'Signup Failed',
-                message: 'Errors occured, please try again.',
-                position: 'bottom-left',
-              });
-            })
-            .finally(() => {
-                loading.close();
-            });
-        } else {
+        if (!valid) {
           this.$notify.error({
-            title: 'Submit Failed',
-            message: 'Errors occured in the input fields.',
-            position: 'bottom-left',
+            title: "Submit Failed",
+            message: "Errors occured in the input fields.",
+            position: "bottom-left",
           });
+          return;
         }
+        /* send http request to the backend server here */
+        const opt = {
+          method: "POST",
+          url: `${BASE_URL}/signup`,
+          data: {
+            email: this.signUpForm.email,
+            password: this.signUpForm.pass,
+            username: this.signUpForm.username,
+            fullname: this.signUpForm.fullname,
+            age: this.signUpForm.age,
+            phone: this.signUpForm.phone,
+          },
+          headers: { "Content-Type": "application/json" },
+        };
+        const loading = this.$loading({
+          lock: true,
+          text: "Loading",
+          spinner: "el-icon-loading",
+          background: "rgba(0, 0, 0, 0.7)",
+        });
+        axios(opt)
+          .then(() => {
+            this.$notify({
+              title: "SignUp Success",
+              message: "some message",
+              type: "success",
+              position: "bottom-left",
+            });
+            this.$emit("handle-reload");
+          })
+          .catch(() => {
+            this.$notify.error({
+              title: "Signup Failed",
+              message: "Errors occured, please try again.",
+              position: "bottom-left",
+            });
+          })
+          .finally(() => {
+            loading.close();
+          });
       });
     },
   },
