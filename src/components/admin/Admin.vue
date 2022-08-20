@@ -1,37 +1,47 @@
 <template>
   <div class="admin-page">
-    <div class="admin-content">
-        <div v-if="!this.loggedIn">
-            {{ "login form here" }}
-        </div>
-        <div v-else>
-            {{ "Admin panels here"}}
-        </div>
-    </div>  
+    <AdminLogin 
+      v-if="!this.loggedIn" 
+      @handle-login-on-success="handleLoginOnSuccess" 
+    />
+    <AdminPanel 
+      v-else
+      @handle-logout="handleLogout"
+    />
   </div>
 </template>
 
 <script>
+import AdminLogin from "./AdminLogin.vue";
+import AdminPanel from "./AdminPanel.vue";
+
 export default {
-    name: "admin-page",
-    data() {
-        return {
-            loggedIn: true
-        }
+  name: "admin-page",
+  components: {
+    AdminLogin,
+    AdminPanel
+  },
+  data() {
+    return {
+      loggedIn: true,
+    };
+  },
+  methods: {
+    handleLoginOnSuccess() {
+      console.log("Admin logged in.")
+      this.loggedIn = true;
     },
-}
+    handleLogout() {
+      console.log("Current Admin logged out.")
+      this.loggedIn = false;
+    },
+  },
+};
 </script>
 
 <style scoped>
 .admin-page {
-    height: calc(100vh - 64px);
+  height: calc(100vh - 64px);
+  position: relative;
 }
-
-.admin-content {
-    margin: auto;
-    width: 1000px;
-    height: calc(100vh - 64px);
-    background-color: white;
-}
-
 </style>
