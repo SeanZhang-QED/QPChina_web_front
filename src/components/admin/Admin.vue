@@ -42,5 +42,6 @@ export default {
 <style scoped>
 .admin-page {
   height: calc(100vh - 64px);
+  position: relative;
 }
 </style>

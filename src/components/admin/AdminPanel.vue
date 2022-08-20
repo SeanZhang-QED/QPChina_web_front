@@ -1,6 +1,6 @@
 <template>
   <el-container
-    style="height: 100%; width: 1200px; margin: auto; border: 1px solid #eee"
+    style="height: 100%; minWidth: 1080px; maxWidth: 1200px; margin: auto; border: 1px solid #eee"
   >
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <el-menu :default-openeds="['1', '3']">
