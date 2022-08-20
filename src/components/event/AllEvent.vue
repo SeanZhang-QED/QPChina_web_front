@@ -11,7 +11,7 @@
           <!-- https://stackoverflow.com/questions/28949911/what-does-this-format-means-t000000-000z -->
           <h2 style="font-size:16px;">{{ item.event_date }}</h2>
           <h2 style="font-size:25px;">{{ item.event_title }}</h2>
-          <p style="font-size: 18px; text-align: left; width:315px;">{{ item.event_summary }}</p>
+          <p style="font-size: 15px; text-align: left; width:315px;">{{ item.event_summary }}</p>
           
           <!-- <router-link :to="`/all-event/${item.event_id}`">
             <button>RSVP</button> 
@@ -57,10 +57,10 @@ export default {
           // console.log(this.events)
           this.paginatedEvents = this.events.slice(0, this.pageSize)
         }
-      }).catch(() =>
+      }).catch((error) =>
         this.$notify.error({
           title: 'Error',
-          message: 'Failed to fetch event data',
+          message: `Failed to fetch event data: ${error.message}`,
           position: 'bottom-left'
         }));
   },
@@ -69,10 +69,12 @@ export default {
     handleCurrentChange(currentPage) {
       this.currentPage = currentPage;
       console.log(`当前页：${currentPage}`)
+      window.scrollTo(0, 0);
       let start = (this.currentPage - 1) * this.pageSize;
       let end = start + this.pageSize;
       console.log(start, end)
       this.paginatedEvents = this.events.slice(start, end);
+
     },
     jump(title){
       this.$router.push(
@@ -106,12 +108,13 @@ export default {
 
 .card {
   margin: 50px;
-  width: 804px;
+  width: 850px;
   height: 570px;
   border: 1px solid;
   border-color: rgba(232, 230, 230, 1);
   box-shadow: 0px 1px 4px 0px black;
   transition: all 0.4s ease-in-out 0s;
+  /* overflow:auto */
 
 }
 
@@ -126,6 +129,7 @@ img {
 }
 
 .text {
+  width: auto;
   height: 570px;
   display: flex;
   flex-direction: column;
